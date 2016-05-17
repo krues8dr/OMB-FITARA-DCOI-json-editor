@@ -1,4 +1,3 @@
-"use strict";
 
 
 /**
@@ -20421,7 +20420,7 @@ var log = function log(type) {
     return console.log.bind(console, type);
 };
 
-var generateJson = function (data) {
+var generateJson = function generateJson(data) {
     ReactDOM.render(_react2.default.createElement('textarea', {
             className: "form-control",
             rows: 20,
@@ -20431,11 +20430,16 @@ var generateJson = function (data) {
         , document.getElementById("out"));
 };
 
+var emptyOutput = function emptyOutput(){
+    ReactDOM.render(_react2.default.createElement('br', {}, null)
+        , document.getElementById("out"));
+};
+
 (0, ReactDOM.render)(_react2.default.createElement(_reactJsonschemaForm2.default, {
     schema: schema,
     formData: formData,
     liveValidate: true,
-    onChange: log("changed"),
+    onChange: emptyOutput,
     onSubmit: generateJson,
-    onError: log("errors")
+    onError: emptyOutput
 }), document.getElementById("app"));
