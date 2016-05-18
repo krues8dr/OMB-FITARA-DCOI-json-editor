@@ -20435,11 +20435,32 @@ var emptyOutput = function emptyOutput(){
         , document.getElementById("out"));
 };
 
-(0, ReactDOM.render)(_react2.default.createElement(_reactJsonschemaForm2.default, {
-    schema: schema,
-    formData: formData,
-    liveValidate: true,
-    onChange: emptyOutput,
-    onSubmit: generateJson,
-    onError: emptyOutput
-}), document.getElementById("app"));
+var loadDummyData = function loadDummyData() {
+    ReactDOM.render(
+        _react2.default.createElement(_reactJsonschemaForm2.default, {
+            schema: schema,
+            formData: formData,
+            liveValidate: true,
+            onChange: emptyOutput,
+            onSubmit: generateJson,
+            onError: emptyOutput
+        }), document.getElementById("app"));
+};
+
+(0, ReactDOM.render)(
+    _react2.default.createElement("div", {
+        className: "row"
+    },
+    _react2.default.createElement("button", {
+        className: "btn btn-success pull-right",
+        onClick: loadDummyData
+    }, "Load dummy data (test)")), document.getElementById("controls"));
+
+(0, ReactDOM.render)(
+    _react2.default.createElement(_reactJsonschemaForm2.default, {
+        schema: schema,
+        liveValidate: true,
+        onChange: emptyOutput,
+        onSubmit: generateJson,
+        onError: emptyOutput
+    }), document.getElementById("app"));
