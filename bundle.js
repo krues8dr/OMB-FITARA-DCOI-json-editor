@@ -20452,7 +20452,7 @@ var loadDummyData = function loadDummyData() {
         className: "row"
     },
     _react2.default.createElement("button", {
-        className: "btn btn-success pull-right",
+        className: "btn btn-info pull-right",
         onClick: loadDummyData
     }, "Load dummy data (test)")), document.getElementById("controls"));
 
