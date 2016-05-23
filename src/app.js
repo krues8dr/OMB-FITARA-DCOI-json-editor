@@ -1,9 +1,13 @@
 var React = require('react');
+
 var ReactDOM = require('react-dom');
 var JSONSchemaForm = require('react-jsonschema-form');
+var schema = require('./js/schema.js');
 
-var schema = require('./schema.js');
-var dummyData = require('./dummy.js');
+var dummyData = require('./js/dummy.js');
+
+// Covering browsers without Object.assign support (IE 9-11)
+require('./js/polyfill.js');
 
 var generateJson = function generateJson(data) {
     ReactDOM.render(React.createElement('textarea', {
