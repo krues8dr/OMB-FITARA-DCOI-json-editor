@@ -45,11 +45,14 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
+
 	var ReactDOM = __webpack_require__(38);
 	var JSONSchemaForm = __webpack_require__(168);
-
 	var schema = __webpack_require__(215);
+
 	var dummyData = __webpack_require__(216);
+
+	__webpack_require__(217);
 
 	var generateJson = function generateJson(data) {
 	    ReactDOM.render(React.createElement('textarea', {
@@ -29538,6 +29541,34 @@
 	};
 
 	module.exports = dummyData;
+
+/***/ },
+/* 217 */
+/***/ function(module, exports) {
+
+	if (typeof Object.assign != 'function') {
+	    (function () {
+	        Object.assign = function (target) {
+	            'use strict';
+	            if (target === undefined || target === null) {
+	                throw new TypeError('Cannot convert undefined or null to object');
+	            }
+
+	            var output = Object(target);
+	            for (var index = 1; index < arguments.length; index++) {
+	                var source = arguments[index];
+	                if (source !== undefined && source !== null) {
+	                    for (var nextKey in source) {
+	                        if (Object.prototype.hasOwnProperty.call(source, nextKey)) {
+	                            output[nextKey] = source[nextKey];
+	                        }
+	                    }
+	                }
+	            }
+	            return output;
+	        };
+	    })();
+	}
 
 /***/ }
 /******/ ]);
