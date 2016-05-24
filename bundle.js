@@ -52,6 +52,7 @@
 
 	var dummyData = __webpack_require__(216);
 
+	// Covering browsers without Object.assign support (IE 9-11)
 	__webpack_require__(217);
 
 	var generateJson = function generateJson(data) {
