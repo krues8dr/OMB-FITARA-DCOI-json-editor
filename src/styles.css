@@ -21,3 +21,12 @@ li:before {
 #out textarea{
     background-color: #ded;
 }
+
+.form-group.field.field-object {
+    border: #ccc 1px solid;
+    padding: 10px;
+}
+
+legend{
+    color:darkcyan;
+}

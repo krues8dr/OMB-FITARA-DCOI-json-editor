@@ -43,7 +43,7 @@ var loadDummyData = function loadDummyData() {
             className: "row"
         },
         React.createElement("button", {
-            className: "btn btn-info pull-right",
+            className: "btn btn-danger pull-right",
             onClick: loadDummyData
         }, "Load dummy data (test)")), document.getElementById("controls"));
 
