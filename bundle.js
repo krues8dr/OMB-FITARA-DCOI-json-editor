@@ -49,11 +49,12 @@
 	var ReactDOM = __webpack_require__(38);
 	var JSONSchemaForm = __webpack_require__(168);
 	var schema = __webpack_require__(215);
+	var uiSchema = __webpack_require__(216);
 
-	var dummyData = __webpack_require__(216);
+	var dummyData = __webpack_require__(217);
 
 	// Covering browsers without Object.assign support (IE 9-11)
-	__webpack_require__(217);
+	__webpack_require__(218);
 
 	var generateJson = function generateJson(data) {
 	    ReactDOM.render(React.createElement('textarea', {
@@ -74,6 +75,7 @@
 	    ReactDOM.render(
 	        React.createElement(JSONSchemaForm.default, {
 	            schema: schema,
+	            uiSchema: uiSchema,
 	            formData: dummyData,
 	            liveValidate: true,
 	            onChange: emptyOutput,
@@ -94,6 +96,7 @@
 	(0, ReactDOM.render)(
 	    React.createElement(JSONSchemaForm.default, {
 	        schema: schema,
+	        uiSchema: uiSchema,
 	        liveValidate: true,
 	        onChange: emptyOutput,
 	        onSubmit: generateJson,
@@ -29435,6 +29438,98 @@
 /* 216 */
 /***/ function(module, exports) {
 
+	var uiSchema = {
+	    "optimizationMetrics": {
+	        "facilityUtilization": {
+	            "stepsForAchievingPlannedValues": {
+	                "ui:widget": "textarea"
+	            },
+	            "explanationForUnmetPlannedValues": {
+	                "ui:widget": "textarea"
+	            }
+	        },
+	        "energyMetering": {
+	            "stepsForAchievingPlannedValues": {
+	                "ui:widget": "textarea"
+	            },
+	            "explanationForUnmetPlannedValues": {
+	                "ui:widget": "textarea"
+	            }
+	        },
+	        "pue": {
+	            "stepsForAchievingPlannedValues": {
+	                "ui:widget": "textarea"
+	            },
+	            "explanationForUnmetPlannedValues": {
+	                "ui:widget": "textarea"
+	            }
+	        },
+	        "virtualization": {
+	            "stepsForAchievingPlannedValues": {
+	                "ui:widget": "textarea"
+	            },
+	            "explanationForUnmetPlannedValues": {
+	                "ui:widget": "textarea"
+	            }
+	        },
+	        "tieredServerUtAutoMonitoring": {
+	            "stepsForAchievingPlannedValues": {
+	                "ui:widget": "textarea"
+	            },
+	            "explanationForUnmetPlannedValues": {
+	                "ui:widget": "textarea"
+	            }
+	        },
+	        "nontieredServerUtAutoMonitoring": {
+	            "stepsForAchievingPlannedValues": {
+	                "ui:widget": "textarea"
+	            },
+	            "explanationForUnmetPlannedValues": {
+	                "ui:widget": "textarea"
+	            }
+	        }
+	    },
+	    "tieredClosures": {
+	        "stepsForAchievingPlannedValues": {
+	            "ui:widget": "textarea"
+	        },
+	        "explanationForUnmetPlannedValues": {
+	            "ui:widget": "textarea"
+	        }
+	    },
+	    "nontieredClosures":{
+	        "stepsForAchievingPlannedValues": {
+	            "ui:widget": "textarea"
+	        },
+	        "explanationForUnmetPlannedValues": {
+	            "ui:widget": "textarea"
+	        }
+	    },
+	    "costSavings":{
+	        "stepsForAchievingPlannedValues": {
+	            "ui:widget": "textarea"
+	        },
+	        "explanationForUnmetPlannedValues": {
+	            "ui:widget": "textarea"
+	        },
+	        "costsOfClosures": {
+	            "ui:widget": "textarea"
+	        },
+	        "costsOfOptimization": {
+	            "ui:widget": "textarea"
+	        },
+	        "lifecycleCostSavingsEstimated": {
+	            "ui:widget": "textarea"
+	        }
+	    }
+	};
+
+	module.exports = uiSchema;
+
+/***/ },
+/* 217 */
+/***/ function(module, exports) {
+
 	var dummyData = {
 	    "optimizationMetrics": {
 	        "facilityUtilization": {
@@ -29544,7 +29639,7 @@
 	module.exports = dummyData;
 
 /***/ },
-/* 217 */
+/* 218 */
 /***/ function(module, exports) {
 
 	if (typeof Object.assign != 'function') {
