@@ -3,6 +3,7 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 var JSONSchemaForm = require('react-jsonschema-form');
 var schema = require('./js/schema.js');
+var uiSchema = require('./js/uiSchema.js');
 
 var dummyData = require('./js/dummy.js');
 
@@ -28,6 +29,7 @@ var loadDummyData = function loadDummyData() {
     ReactDOM.render(
         React.createElement(JSONSchemaForm.default, {
             schema: schema,
+            uiSchema: uiSchema,
             formData: dummyData,
             liveValidate: true,
             onChange: emptyOutput,
@@ -48,6 +50,7 @@ var loadDummyData = function loadDummyData() {
 (0, ReactDOM.render)(
     React.createElement(JSONSchemaForm.default, {
         schema: schema,
+        uiSchema: uiSchema,
         liveValidate: true,
         onChange: emptyOutput,
         onSubmit: generateJson,
