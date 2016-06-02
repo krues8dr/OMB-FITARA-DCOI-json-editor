@@ -30,3 +30,7 @@ li {
 legend{
     color:darkcyan;
 }
+
+.intro {
+    margin: 30px 0;
+}
