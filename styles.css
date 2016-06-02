@@ -11,6 +11,10 @@ li {
     display: block
 }
 
+.table-of-contents li:before {
+    content: counters(item, ".") " ";
+    counter-increment: item
+}
 #app textarea{
     height:10em;
 }
