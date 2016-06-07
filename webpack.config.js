@@ -2,7 +2,12 @@ var path = require("path");
 const webpack = require('webpack');
 
 module.exports = {
-    entry: './src/app.js',
+    debug:true,
+    entry:
+        [
+            'babel-polyfill',
+            './src/app'
+        ],
     output: {
         path: './bin',
         filename: 'bundle.js'
@@ -12,11 +17,12 @@ module.exports = {
     ],
     loaders: [
         {
-            test: /\.jsx?$/,
-            loader: "babel",
-            include: [
-                path.join(__dirname, "src")
-            ]
+            test: /\.js$/,
+            include: path.join(__dirname, 'src'),
+            loader: 'babel-loader',
+            query: {
+                presets: ["es2015"],
+            }
         },
         {test: /\.css$/,loader: "style!css"},
         {test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=application/font-woff'},
