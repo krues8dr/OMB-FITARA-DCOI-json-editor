@@ -4,6 +4,7 @@ var ReactDOM = require('react-dom');
 var JSONSchemaForm = require('react-jsonschema-form');
 var schema = require('./js/schema.js');
 var uiSchema = require('./js/uiSchema.js');
+var Clipboard = require('clipboard');
 
 var dummyData = require('./js/dummy.js');
 
@@ -13,6 +14,7 @@ require('./js/polyfill.js');
 var generateJson = function generateJson(data) {
     ReactDOM.render(React.createElement('textarea', {
             className: "form-control",
+            id: "jsonOut",
             rows: 20,
             value: JSON.stringify(data.formData, null, '\t'),
             readOnly: true
@@ -35,8 +37,14 @@ var loadDummyData = function loadDummyData() {
             onChange: emptyOutput,
             onSubmit: generateJson,
             onError: emptyOutput
-        }), document.getElementById("app"));
+        }), document.getElementById("app"),
+        React.createElement("button",{
+            className: "btn hidden copyBtn",
+            data-clipboard-action:
+        }));
 };
+
+new Clipboard('.copyBtn');
 
 (0, ReactDOM.render)(
     React.createElement("div", {
