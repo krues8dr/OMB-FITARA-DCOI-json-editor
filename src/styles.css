@@ -21,7 +21,9 @@ li {
 #out textarea{
     background-color: #ded;
 }
-
+#input textarea{
+    height:20em;
+}
 .form-group.field.field-object {
     border: #ccc 1px solid;
     padding: 10px;
