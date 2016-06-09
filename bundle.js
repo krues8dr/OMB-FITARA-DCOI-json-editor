@@ -85,7 +85,7 @@
 
 	var initialFormData = {};
 
-	walk(DCOIschema, formUiSchema, initialFormData);
+	// walk(DCOIschema, formUiSchema, initialFormData);
 
 	// Covering browsers without Object.assign support (IE 9-11)
 	__webpack_require__(218);
