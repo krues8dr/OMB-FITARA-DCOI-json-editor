@@ -48,9 +48,9 @@
 
 	var ReactDOM = __webpack_require__(38);
 	var JSONSchemaForm = __webpack_require__(168);
-	var DCOIschema = __webpack_require__(213);
-	var formUiSchema = __webpack_require__(214);
-	var dummyData = __webpack_require__(215);
+	var DCOIschema = __webpack_require__(207);
+	var formUiSchema = __webpack_require__(208);
+	var dummyData = __webpack_require__(209);
 
 	var Form = JSONSchemaForm.default;
 
@@ -20542,13 +20542,13 @@
 
 	var _SchemaField3 = _interopRequireDefault(_SchemaField2);
 
-	var _TitleField2 = __webpack_require__(188);
+	var _TitleField2 = __webpack_require__(187);
 
 	var _TitleField3 = _interopRequireDefault(_TitleField2);
 
 	var _utils = __webpack_require__(181);
 
-	var _ErrorList = __webpack_require__(212);
+	var _ErrorList = __webpack_require__(206);
 
 	var _ErrorList2 = _interopRequireDefault(_ErrorList);
 
@@ -20571,16 +20571,15 @@
 	    _this.onChange = function (formData) {
 	      var options = arguments.length <= 1 || arguments[1] === undefined ? { validate: false } : arguments[1];
 
-	      var mustValidate = _this.props.liveValidate || options.validate;
-	      var state = void 0;
-	      if (!mustValidate) {
-	        state = { status: "editing", formData: formData };
-	      } else {
-	        var errors = _this.validate(formData);
-	        var errorSchema = (0, _utils.toErrorSchema)(errors);
-	        state = { status: "editing", formData: formData, errors: errors, errorSchema: errorSchema };
-	      }
-	      (0, _utils.setState)(_this, state, function () {
+	      var liveValidate = _this.props.liveValidate || options.validate;
+	      var errors = liveValidate ? _this.validate(formData) : _this.state.errors;
+	      var errorSchema = (0, _utils.toErrorSchema)(errors);
+	      _this.setState({
+	        status: "editing",
+	        formData: formData,
+	        errors: errors,
+	        errorSchema: errorSchema
+	      }, function (_) {
 	        if (_this.props.onChange) {
 	          _this.props.onChange(_this.state);
 	        }
@@ -20593,7 +20592,7 @@
 	      var errors = _this.validate(_this.state.formData);
 	      if (Object.keys(errors).length > 0) {
 	        var errorSchema = (0, _utils.toErrorSchema)(errors);
-	        (0, _utils.setState)(_this, { errors: errors, errorSchema: errorSchema }, function () {
+	        _this.setState({ errors: errors, errorSchema: errorSchema }, function (_) {
 	          if (_this.props.onError) {
 	            _this.props.onError(errors);
 	          } else {
@@ -20604,7 +20603,7 @@
 	      } else if (_this.props.onSubmit) {
 	        _this.props.onSubmit(_this.state);
 	      }
-	      _this.setState({ status: "initial", errors: [], errorSchema: {} });
+	      _this.setState({ status: "initial" });
 	    };
 
 	    _this.state = _this.getStateFromProps(props);
@@ -20619,19 +20618,15 @@
 	  }, {
 	    key: "getStateFromProps",
 	    value: function getStateFromProps(props) {
-	      var state = this.state || {};
 	      var schema = "schema" in props ? props.schema : this.props.schema;
 	      var uiSchema = "uiSchema" in props ? props.uiSchema : this.props.uiSchema;
-	      var edit = typeof props.formData !== "undefined";
-	      var liveValidate = props.liveValidate || this.props.liveValidate;
-	      var mustValidate = edit && liveValidate;
+	      var edit = !!props.formData;
+	      var liveValidate = this.props.liveValidate || props.liveValidate;
 	      var definitions = schema.definitions;
 
 	      var formData = (0, _utils.getDefaultFormState)(schema, props.formData, definitions);
-	      var previousErrors = state.errors || [];
-	      var previousErrorSchema = state.errorSchema || {};
-	      var errors = mustValidate ? this.validate(formData, schema) : previousErrors;
-	      var errorSchema = mustValidate ? (0, _utils.toErrorSchema)(errors) : previousErrorSchema;
+	      var errors = edit && liveValidate ? this.validate(formData, schema) : [];
+	      var errorSchema = (0, _utils.toErrorSchema)(errors);
 	      var idSchema = (0, _utils.toIdSchema)(schema, uiSchema["ui:rootFieldId"], definitions);
 	      return { status: "initial", formData: formData, edit: edit, errors: errors, errorSchema: errorSchema, idSchema: idSchema };
 	    }
@@ -20682,7 +20677,6 @@
 	      var children = _props.children;
 	      var schema = _props.schema;
 	      var uiSchema = _props.uiSchema;
-	      var safeRenderCompletion = _props.safeRenderCompletion;
 	      var _state2 = this.state;
 	      var formData = _state2.formData;
 	      var errorSchema = _state2.errorSchema;
@@ -20701,8 +20695,7 @@
 	          idSchema: idSchema,
 	          formData: formData,
 	          onChange: this.onChange,
-	          registry: registry,
-	          safeRenderCompletion: safeRenderCompletion }),
+	          registry: registry }),
 	        children ? children : _react2.default.createElement(
 	          "p",
 	          null,
@@ -20721,8 +20714,7 @@
 
 	Form.defaultProps = {
 	  uiSchema: {},
-	  liveValidate: false,
-	  safeRenderCompletion: false
+	  liveValidate: false
 	};
 	exports.default = Form;
 
@@ -20737,8 +20729,7 @@
 	    onChange: _react.PropTypes.func,
 	    onError: _react.PropTypes.func,
 	    onSubmit: _react.PropTypes.func,
-	    liveValidate: _react.PropTypes.bool,
-	    safeRenderCompletion: _react.PropTypes.bool
+	    liveValidate: _react.PropTypes.bool
 	  };
 	}
 
@@ -23605,35 +23596,33 @@
 	  value: true
 	});
 
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
 	var _react = __webpack_require__(1);
 
 	var _react2 = _interopRequireDefault(_react);
 
 	var _utils = __webpack_require__(181);
 
-	var _ArrayField = __webpack_require__(205);
+	var _ArrayField = __webpack_require__(199);
 
 	var _ArrayField2 = _interopRequireDefault(_ArrayField);
 
-	var _BooleanField = __webpack_require__(206);
+	var _BooleanField = __webpack_require__(200);
 
 	var _BooleanField2 = _interopRequireDefault(_BooleanField);
 
-	var _NumberField = __webpack_require__(208);
+	var _NumberField = __webpack_require__(202);
 
 	var _NumberField2 = _interopRequireDefault(_NumberField);
 
-	var _ObjectField = __webpack_require__(210);
+	var _ObjectField = __webpack_require__(204);
 
 	var _ObjectField2 = _interopRequireDefault(_ObjectField);
 
-	var _StringField = __webpack_require__(209);
+	var _StringField = __webpack_require__(203);
 
 	var _StringField2 = _interopRequireDefault(_StringField);
 
-	var _UnsupportedField = __webpack_require__(211);
+	var _UnsupportedField = __webpack_require__(205);
 
 	var _UnsupportedField2 = _interopRequireDefault(_UnsupportedField);
 
@@ -23759,8 +23748,6 @@
 
 	  var schema = (0, _utils.retrieveSchema)(props.schema, definitions);
 	  var FieldComponent = getFieldComponent(schema, uiSchema, fields);
-	  var disabled = Boolean(props.disabled || uiSchema["ui:disabled"]);
-	  var readonly = Boolean(props.readonly || uiSchema["ui:readonly"]);
 
 	  if (Object.keys(schema).length === 0) {
 	    return _react2.default.createElement("div", null);
@@ -23780,7 +23767,7 @@
 	  return _react2.default.createElement(
 	    Wrapper,
 	    {
-	      label: props.schema.title || schema.title || name,
+	      label: schema.title || name,
 	      errorSchema: errorSchema,
 	      hidden: uiSchema["ui:widget"] === "hidden",
 	      help: uiSchema["ui:help"],
@@ -23789,10 +23776,7 @@
 	      displayLabel: displayLabel,
 	      id: idSchema.id,
 	      classNames: uiSchema.classNames },
-	    _react2.default.createElement(FieldComponent, _extends({}, props, {
-	      schema: schema,
-	      disabled: disabled,
-	      readonly: readonly }))
+	    _react2.default.createElement(FieldComponent, props)
 	  );
 	}
 
@@ -23800,9 +23784,7 @@
 	  uiSchema: {},
 	  errorSchema: {},
 	  idSchema: {},
-	  registry: (0, _utils.getDefaultRegistry)(),
-	  disabled: false,
-	  readonly: false
+	  registry: (0, _utils.getDefaultRegistry)()
 	};
 
 	if (process.env.NODE_ENV !== "production") {
@@ -23827,17 +23809,16 @@
 /* 181 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function(setImmediate) {"use strict";
+	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
 
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
 	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
 
 	exports.getDefaultRegistry = getDefaultRegistry;
+	exports.defaultTypeValue = defaultTypeValue;
 	exports.defaultFieldValue = defaultFieldValue;
 	exports.getAlternativeWidget = getAlternativeWidget;
 	exports.getDefaultFormState = getDefaultFormState;
@@ -23845,8 +23826,6 @@
 	exports.asNumber = asNumber;
 	exports.orderProperties = orderProperties;
 	exports.isMultiSelect = isMultiSelect;
-	exports.isFixedItems = isFixedItems;
-	exports.allowAdditionalItems = allowAdditionalItems;
 	exports.optionsList = optionsList;
 	exports.retrieveSchema = retrieveSchema;
 	exports.shouldRender = shouldRender;
@@ -23855,81 +23834,62 @@
 	exports.parseDateString = parseDateString;
 	exports.toDateString = toDateString;
 	exports.pad = pad;
-	exports.setState = setState;
 
-	var _deeper = __webpack_require__(183);
+	var _deeper = __webpack_require__(182);
 
 	var _deeper2 = _interopRequireDefault(_deeper);
 
-	var _TitleField = __webpack_require__(188);
+	var _TitleField = __webpack_require__(187);
 
 	var _TitleField2 = _interopRequireDefault(_TitleField);
 
-	var _PasswordWidget = __webpack_require__(189);
+	var _PasswordWidget = __webpack_require__(188);
 
 	var _PasswordWidget2 = _interopRequireDefault(_PasswordWidget);
 
-	var _RadioWidget = __webpack_require__(191);
+	var _RadioWidget = __webpack_require__(189);
 
 	var _RadioWidget2 = _interopRequireDefault(_RadioWidget);
 
-	var _UpDownWidget = __webpack_require__(192);
+	var _UpDownWidget = __webpack_require__(190);
 
 	var _UpDownWidget2 = _interopRequireDefault(_UpDownWidget);
 
-	var _RangeWidget = __webpack_require__(193);
+	var _RangeWidget = __webpack_require__(191);
 
 	var _RangeWidget2 = _interopRequireDefault(_RangeWidget);
 
-	var _SelectWidget = __webpack_require__(194);
+	var _SelectWidget = __webpack_require__(192);
 
 	var _SelectWidget2 = _interopRequireDefault(_SelectWidget);
 
-	var _TextWidget = __webpack_require__(195);
+	var _TextWidget = __webpack_require__(193);
 
 	var _TextWidget2 = _interopRequireDefault(_TextWidget);
 
-	var _DateWidget = __webpack_require__(196);
-
-	var _DateWidget2 = _interopRequireDefault(_DateWidget);
-
-	var _DateTimeWidget = __webpack_require__(197);
+	var _DateTimeWidget = __webpack_require__(194);
 
 	var _DateTimeWidget2 = _interopRequireDefault(_DateTimeWidget);
 
-	var _AltDateWidget = __webpack_require__(198);
-
-	var _AltDateWidget2 = _interopRequireDefault(_AltDateWidget);
-
-	var _AltDateTimeWidget = __webpack_require__(199);
-
-	var _AltDateTimeWidget2 = _interopRequireDefault(_AltDateTimeWidget);
-
-	var _EmailWidget = __webpack_require__(200);
+	var _EmailWidget = __webpack_require__(195);
 
 	var _EmailWidget2 = _interopRequireDefault(_EmailWidget);
 
-	var _URLWidget = __webpack_require__(201);
+	var _URLWidget = __webpack_require__(196);
 
 	var _URLWidget2 = _interopRequireDefault(_URLWidget);
 
-	var _TextareaWidget = __webpack_require__(202);
+	var _TextareaWidget = __webpack_require__(197);
 
 	var _TextareaWidget2 = _interopRequireDefault(_TextareaWidget);
 
-	var _HiddenWidget = __webpack_require__(203);
+	var _HiddenWidget = __webpack_require__(198);
 
 	var _HiddenWidget2 = _interopRequireDefault(_HiddenWidget);
 
-	var _ColorWidget = __webpack_require__(204);
-
-	var _ColorWidget2 = _interopRequireDefault(_ColorWidget);
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
-
-	var RE_ERROR_ARRAY_PATH = /\[\d+]/g;
+	var RE_ERROR_ARRAY_PATH = /(.*)\[(\d+)\]$/;
 
 	var altWidgetMap = {
 	  boolean: {
@@ -23942,12 +23902,7 @@
 	    radio: _RadioWidget2.default,
 	    select: _SelectWidget2.default,
 	    textarea: _TextareaWidget2.default,
-	    hidden: _HiddenWidget2.default,
-	    date: _DateWidget2.default,
-	    datetime: _DateTimeWidget2.default,
-	    "alt-date": _AltDateWidget2.default,
-	    "alt-datetime": _AltDateTimeWidget2.default,
-	    color: _ColorWidget2.default
+	    hidden: _HiddenWidget2.default
 	  },
 	  number: {
 	    updown: _UpDownWidget2.default,
@@ -23963,7 +23918,6 @@
 
 	var stringFormatWidgets = {
 	  "date-time": _DateTimeWidget2.default,
-	  "date": _DateWidget2.default,
 	  "email": _EmailWidget2.default,
 	  "hostname": _TextWidget2.default,
 	  "ipv4": _TextWidget2.default,
@@ -23988,8 +23942,35 @@
 	  };
 	}
 
+	function defaultTypeValue(schema) {
+	  if (typeof schema.default !== "undefined") {
+	    return schema.default;
+	  }
+	  var type = schema.type;
+
+	  switch (type) {
+	    case "array":
+	      return [];
+	    case "boolean":
+	      return false;
+	    case "number":
+	      return 0;
+	    case "object":
+	      return {};
+	    case "string":
+	      {
+	        if (schema.format === "date-time") {
+	          return new Date().toJSON();
+	        }
+	        return "";
+	      }
+	    default:
+	      return undefined;
+	  }
+	}
+
 	function defaultFieldValue(formData, schema) {
-	  return typeof formData === "undefined" ? schema.default : formData;
+	  return typeof formData === "undefined" ? defaultTypeValue(schema) : formData;
 	}
 
 	function getAlternativeWidget(schema, widget) {
@@ -24037,22 +24018,18 @@
 	  } else if ("$ref" in schema) {
 	    // Use referenced schema defaults for this node.
 	    var refSchema = findSchemaDefinition(schema.$ref, definitions);
-	    return computeDefaults(refSchema, defaults, definitions);
-	  } else if (isFixedItems(schema)) {
-	    defaults = schema.items.map(function (itemSchema) {
-	      return computeDefaults(itemSchema, undefined, definitions);
-	    });
+	    defaults = computeDefaults(refSchema, defaults, definitions);
 	  }
 	  // Not defaults defined for this node, fallback to generic typed ones.
 	  if (typeof defaults === "undefined") {
-	    defaults = schema.default;
+	    defaults = defaultTypeValue(schema);
 	  }
 	  // We need to recur for object schema inner default values.
 	  if (schema.type === "object") {
 	    return Object.keys(schema.properties).reduce(function (acc, key) {
 	      // Compute the defaults for this node, with the parent defaults we might
 	      // have from a previous run: defaults[key].
-	      acc[key] = computeDefaults(schema.properties[key], (defaults || {})[key], definitions);
+	      acc[key] = computeDefaults(schema.properties[key], defaults[key], definitions);
 	      return acc;
 	    }, {});
 	  }
@@ -24066,7 +24043,7 @@
 	    throw new Error("Invalid schema: " + _schema);
 	  }
 	  var schema = retrieveSchema(_schema, definitions);
-	  var defaults = computeDefaults(schema, _schema.default, definitions);
+	  var defaults = computeDefaults(schema, undefined, definitions);
 	  if (typeof formData === "undefined") {
 	    // No form data? Use schema defaults.
 	    return defaults;
@@ -24127,19 +24104,6 @@
 	  return Array.isArray(schema.items.enum) && schema.uniqueItems;
 	}
 
-	function isFixedItems(schema) {
-	  return Array.isArray(schema.items) && schema.items.length > 0 && schema.items.every(function (item) {
-	    return isObject(item);
-	  });
-	}
-
-	function allowAdditionalItems(schema) {
-	  if (schema.additionalItems === true) {
-	    console.warn("additionalItems=true is currently not supported");
-	  }
-	  return isObject(schema.additionalItems);
-	}
-
 	function optionsList(schema) {
 	  return schema.enum.map(function (value, i) {
 	    var label = schema.enumNames && schema.enumNames[i] || String(value);
@@ -24167,15 +24131,7 @@
 	    return schema;
 	  }
 	  // Retrieve the referenced schema definition.
-	  var $refSchema = findSchemaDefinition(schema.$ref, definitions);
-	  // Drop the $ref property of the source schema.
-	  var $ref = schema.$ref;
-
-	  var localSchema = _objectWithoutProperties(schema, ["$ref"]); // eslint-disable-line no-unused-vars
-	  // Update referenced schema definition with local schema properties.
-
-
-	  return _extends({}, $refSchema, localSchema);
+	  return findSchemaDefinition(schema.$ref, definitions);
 	}
 
 	function shouldRender(comp, nextProps, nextState) {
@@ -24186,13 +24142,9 @@
 	  // Parse array indices, eg. "instance.level1.level2[2].level3"
 	  // => ["instance", "level1", "level2", 2, "level3"]
 	  return property.split(".").reduce(function (path, node) {
-	    var match = node.match(RE_ERROR_ARRAY_PATH);
+	    var match = RE_ERROR_ARRAY_PATH.exec(node);
 	    if (match) {
-	      var nodeName = node.slice(0, node.indexOf("["));
-	      var indices = match.map(function (str) {
-	        return parseInt(str.slice(1, -1), 10);
-	      });
-	      path = path.concat(nodeName, indices);
+	      path = path.concat([match[1], parseInt(match[2], 10)]);
 	    } else {
 	      path.push(node);
 	    }
@@ -24283,17 +24235,8 @@
 	}
 
 	function parseDateString(dateString) {
-	  var includeTime = arguments.length <= 1 || arguments[1] === undefined ? true : arguments[1];
-
 	  if (!dateString) {
-	    return {
-	      year: -1,
-	      month: -1,
-	      day: -1,
-	      hour: includeTime ? -1 : 0,
-	      minute: includeTime ? -1 : 0,
-	      second: includeTime ? -1 : 0
-	    };
+	    dateString = new Date().toJSON();
 	  }
 	  var date = new Date(dateString);
 	  if (Number.isNaN(date.getTime())) {
@@ -24303,27 +24246,22 @@
 	    year: date.getUTCFullYear(),
 	    month: date.getUTCMonth() + 1, // oh you, javascript.
 	    day: date.getUTCDate(),
-	    hour: includeTime ? date.getUTCHours() : 0,
-	    minute: includeTime ? date.getUTCMinutes() : 0,
-	    second: includeTime ? date.getUTCSeconds() : 0
+	    hour: date.getUTCHours(),
+	    minute: date.getUTCMinutes(),
+	    second: date.getUTCSeconds()
 	  };
 	}
 
-	function toDateString(_ref) {
-	  var year = _ref.year;
-	  var month = _ref.month;
-	  var day = _ref.day;
-	  var _ref$hour = _ref.hour;
-	  var hour = _ref$hour === undefined ? 0 : _ref$hour;
-	  var _ref$minute = _ref.minute;
-	  var minute = _ref$minute === undefined ? 0 : _ref$minute;
-	  var _ref$second = _ref.second;
-	  var second = _ref$second === undefined ? 0 : _ref$second;
-	  var time = arguments.length <= 1 || arguments[1] === undefined ? true : arguments[1];
+	function toDateString(dateObj) {
+	  var year = dateObj.year;
+	  var month = dateObj.month;
+	  var day = dateObj.day;
+	  var hour = dateObj.hour;
+	  var minute = dateObj.minute;
+	  var second = dateObj.second;
 
 	  var utcTime = Date.UTC(year, month - 1, day, hour, minute, second);
-	  var datetime = new Date(utcTime).toJSON();
-	  return time ? datetime : datetime.slice(0, 10);
+	  return new Date(utcTime).toJSON();
 	}
 
 	function pad(num, size) {
@@ -24334,102 +24272,8 @@
 	  return s;
 	}
 
-	function setState(instance, state, callback) {
-	  var safeRenderCompletion = instance.props.safeRenderCompletion;
-
-	  if (safeRenderCompletion) {
-	    instance.setState(state, callback);
-	  } else {
-	    instance.setState(state);
-	    setImmediate(callback);
-	  }
-	}
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(182).setImmediate))
-
 /***/ },
 /* 182 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function(setImmediate, clearImmediate) {var nextTick = __webpack_require__(3).nextTick;
-	var apply = Function.prototype.apply;
-	var slice = Array.prototype.slice;
-	var immediateIds = {};
-	var nextImmediateId = 0;
-
-	// DOM APIs, for completeness
-
-	exports.setTimeout = function() {
-	  return new Timeout(apply.call(setTimeout, window, arguments), clearTimeout);
-	};
-	exports.setInterval = function() {
-	  return new Timeout(apply.call(setInterval, window, arguments), clearInterval);
-	};
-	exports.clearTimeout =
-	exports.clearInterval = function(timeout) { timeout.close(); };
-
-	function Timeout(id, clearFn) {
-	  this._id = id;
-	  this._clearFn = clearFn;
-	}
-	Timeout.prototype.unref = Timeout.prototype.ref = function() {};
-	Timeout.prototype.close = function() {
-	  this._clearFn.call(window, this._id);
-	};
-
-	// Does not start the time, just sets up the members needed.
-	exports.enroll = function(item, msecs) {
-	  clearTimeout(item._idleTimeoutId);
-	  item._idleTimeout = msecs;
-	};
-
-	exports.unenroll = function(item) {
-	  clearTimeout(item._idleTimeoutId);
-	  item._idleTimeout = -1;
-	};
-
-	exports._unrefActive = exports.active = function(item) {
-	  clearTimeout(item._idleTimeoutId);
-
-	  var msecs = item._idleTimeout;
-	  if (msecs >= 0) {
-	    item._idleTimeoutId = setTimeout(function onTimeout() {
-	      if (item._onTimeout)
-	        item._onTimeout();
-	    }, msecs);
-	  }
-	};
-
-	// That's not how node.js implements it but the exposed api is the same.
-	exports.setImmediate = typeof setImmediate === "function" ? setImmediate : function(fn) {
-	  var id = nextImmediateId++;
-	  var args = arguments.length < 2 ? false : slice.call(arguments, 1);
-
-	  immediateIds[id] = true;
-
-	  nextTick(function onNextTick() {
-	    if (immediateIds[id]) {
-	      // fn.call() is faster so we optimize for the common use-case
-	      // @see http://jsperf.com/call-apply-segu
-	      if (args) {
-	        fn.apply(null, args);
-	      } else {
-	        fn.call(null);
-	      }
-	      // Prevent ids from leaking
-	      exports.clearImmediate(id);
-	    }
-	  });
-
-	  return id;
-	};
-
-	exports.clearImmediate = typeof clearImmediate === "function" ? clearImmediate : function(id) {
-	  delete immediateIds[id];
-	};
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(182).setImmediate, __webpack_require__(182).clearImmediate))
-
-/***/ },
-/* 183 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(Buffer) {'use strict'
@@ -24557,10 +24401,10 @@
 	  }
 	}
 
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(184).Buffer))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(183).Buffer))
 
 /***/ },
-/* 184 */
+/* 183 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(Buffer, global) {/*!
@@ -24573,9 +24417,9 @@
 
 	'use strict'
 
-	var base64 = __webpack_require__(185)
-	var ieee754 = __webpack_require__(186)
-	var isArray = __webpack_require__(187)
+	var base64 = __webpack_require__(184)
+	var ieee754 = __webpack_require__(185)
+	var isArray = __webpack_require__(186)
 
 	exports.Buffer = Buffer
 	exports.SlowBuffer = SlowBuffer
@@ -26112,10 +25956,10 @@
 	  return i
 	}
 
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(184).Buffer, (function() { return this; }())))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(183).Buffer, (function() { return this; }())))
 
 /***/ },
-/* 185 */
+/* 184 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var lookup = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
@@ -26245,7 +26089,7 @@
 
 
 /***/ },
-/* 186 */
+/* 185 */
 /***/ function(module, exports) {
 
 	exports.read = function (buffer, offset, isLE, mLen, nBytes) {
@@ -26335,7 +26179,7 @@
 
 
 /***/ },
-/* 187 */
+/* 186 */
 /***/ function(module, exports) {
 
 	var toString = {}.toString;
@@ -26344,6 +26188,39 @@
 	  return toString.call(arr) == '[object Array]';
 	};
 
+
+/***/ },
+/* 187 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process) {"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function TitleField(props) {
+	  return _react2.default.createElement(
+	    "legend",
+	    null,
+	    props.title
+	  );
+	}
+
+	if (process.env.NODE_ENV !== "production") {
+	  TitleField.propTypes = {
+	    title: _react.PropTypes.string
+	  };
+	}
+
+	exports.default = TitleField;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
 /* 188 */
@@ -26361,59 +26238,33 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var REQUIRED_FIELD_SYMBOL = "*";
+	function PasswordWidget(_ref) {
+	  var schema = _ref.schema;
+	  var id = _ref.id;
+	  var placeholder = _ref.placeholder;
+	  var value = _ref.value;
+	  var required = _ref.required;
+	  var _onChange = _ref.onChange;
 
-	function TitleField(props) {
-	  var title = props.title;
-	  var required = props.required;
-
-	  var legend = required ? title + REQUIRED_FIELD_SYMBOL : title;
-	  return _react2.default.createElement(
-	    "legend",
-	    null,
-	    legend
-	  );
-	}
-
-	if (process.env.NODE_ENV !== "production") {
-	  TitleField.propTypes = {
-	    title: _react.PropTypes.string,
-	    required: _react.PropTypes.bool
-	  };
-	}
-
-	exports.default = TitleField;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
-
-/***/ },
-/* 189 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function(process) {"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _BaseInput = __webpack_require__(190);
-
-	var _BaseInput2 = _interopRequireDefault(_BaseInput);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function PasswordWidget(props) {
-	  return _react2.default.createElement(_BaseInput2.default, _extends({ type: "password" }, props));
+	  return _react2.default.createElement("input", { type: "password",
+	    id: id,
+	    className: "form-control",
+	    value: value,
+	    placeholder: placeholder,
+	    required: required,
+	    onChange: function onChange(event) {
+	      return _onChange(event.target.value);
+	    } });
 	}
 
 	if (process.env.NODE_ENV !== "production") {
 	  PasswordWidget.propTypes = {
-	    value: _react.PropTypes.string
+	    schema: _react.PropTypes.object.isRequired,
+	    id: _react.PropTypes.string.isRequired,
+	    placeholder: _react.PropTypes.string,
+	    value: _react.PropTypes.oneOfType([_react2.default.PropTypes.string, _react2.default.PropTypes.number]),
+	    required: _react.PropTypes.bool,
+	    onChange: _react.PropTypes.func
 	  };
 	}
 
@@ -26421,61 +26272,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 190 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function(process) {"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function BaseInput(props) {
-	  var value = props.value;
-	  var readonly = props.readonly;
-	  var _onChange = props.onChange;
-
-	  return _react2.default.createElement("input", _extends({}, props, {
-	    className: "form-control",
-	    readOnly: readonly,
-	    value: typeof value === "undefined" ? "" : value,
-	    onChange: function onChange(event) {
-	      return _onChange(event.target.value);
-	    } }));
-	}
-
-	BaseInput.defaultProps = {
-	  type: "text",
-	  required: false,
-	  disabled: false,
-	  readonly: false
-	};
-
-	if (process.env.NODE_ENV !== "production") {
-	  BaseInput.propTypes = {
-	    id: _react.PropTypes.string.isRequired,
-	    placeholder: _react.PropTypes.string,
-	    value: _react.PropTypes.any,
-	    required: _react.PropTypes.bool,
-	    disabled: _react.PropTypes.bool,
-	    readonly: _react.PropTypes.bool,
-	    onChange: _react.PropTypes.func
-	  };
-	}
-
-	exports.default = BaseInput;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
-
-/***/ },
-/* 191 */
+/* 189 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {"use strict";
@@ -26496,7 +26293,6 @@
 	  var placeholder = _ref.placeholder;
 	  var value = _ref.value;
 	  var required = _ref.required;
-	  var disabled = _ref.disabled;
 	  var _onChange = _ref.onChange;
 
 	  // Generating a unique field name to identify this set of radio buttons
@@ -26508,7 +26304,7 @@
 	      var checked = option.value === value;
 	      return _react2.default.createElement(
 	        "div",
-	        { key: i, className: "radio " + (disabled ? "disabled" : "") },
+	        { key: i, className: "radio" },
 	        _react2.default.createElement(
 	          "label",
 	          null,
@@ -26516,7 +26312,6 @@
 	            name: name,
 	            value: option.value,
 	            checked: checked,
-	            disabled: disabled,
 	            placeholder: placeholder,
 	            onChange: function onChange(_) {
 	              return _onChange(option.value);
@@ -26543,7 +26338,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 192 */
+/* 190 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {"use strict";
@@ -26557,10 +26352,6 @@
 	var _react = __webpack_require__(1);
 
 	var _react2 = _interopRequireDefault(_react);
-
-	var _BaseInput = __webpack_require__(190);
-
-	var _BaseInput2 = _interopRequireDefault(_BaseInput);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -26578,13 +26369,34 @@
 	  return spec;
 	}
 
-	function UpDownWidget(props) {
-	  return _react2.default.createElement(_BaseInput2.default, _extends({ type: "number" }, props, rangeSpec(props.schema)));
+	function UpDownWidget(_ref) {
+	  var schema = _ref.schema;
+	  var id = _ref.id;
+	  var placeholder = _ref.placeholder;
+	  var value = _ref.value;
+	  var required = _ref.required;
+	  var _onChange = _ref.onChange;
+
+	  return _react2.default.createElement("input", _extends({ type: "number",
+	    id: id,
+	    className: "form-control",
+	    value: value,
+	    placeholder: placeholder,
+	    required: required,
+	    onChange: function onChange(event) {
+	      return _onChange(event.target.value);
+	    }
+	  }, rangeSpec(schema)));
 	}
 
 	if (process.env.NODE_ENV !== "production") {
 	  UpDownWidget.propTypes = {
-	    value: _react.PropTypes.oneOfType([_react.PropTypes.number, _react.PropTypes.string])
+	    schema: _react.PropTypes.object.isRequired,
+	    id: _react.PropTypes.string.isRequired,
+	    placeholder: _react.PropTypes.string,
+	    value: _react.PropTypes.oneOfType([_react2.default.PropTypes.string, _react2.default.PropTypes.number]),
+	    required: _react.PropTypes.bool,
+	    onChange: _react.PropTypes.func
 	  };
 	}
 
@@ -26592,7 +26404,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 193 */
+/* 191 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {"use strict";
@@ -26606,10 +26418,6 @@
 	var _react = __webpack_require__(1);
 
 	var _react2 = _interopRequireDefault(_react);
-
-	var _BaseInput = __webpack_require__(190);
-
-	var _BaseInput2 = _interopRequireDefault(_BaseInput);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -26627,16 +26435,26 @@
 	  return spec;
 	}
 
-	function RangeWidget(props) {
-	  var schema = props.schema;
-	  var value = props.value;
+	function RangeWidget(_ref) {
+	  var schema = _ref.schema;
+	  var id = _ref.id;
+	  var placeholder = _ref.placeholder;
+	  var value = _ref.value;
+	  var required = _ref.required;
+	  var _onChange = _ref.onChange;
 
 	  return _react2.default.createElement(
 	    "div",
 	    { className: "field-range-wrapper" },
-	    _react2.default.createElement(_BaseInput2.default, _extends({
-	      type: "range"
-	    }, props, rangeSpec(schema))),
+	    _react2.default.createElement("input", _extends({ type: "range",
+	      id: id,
+	      value: value,
+	      placeholder: placeholder,
+	      required: required,
+	      onChange: function onChange(event) {
+	        return _onChange(event.target.value);
+	      }
+	    }, rangeSpec(schema))),
 	    _react2.default.createElement(
 	      "span",
 	      { className: "range-view" },
@@ -26647,7 +26465,12 @@
 
 	if (process.env.NODE_ENV !== "production") {
 	  RangeWidget.propTypes = {
-	    value: _react.PropTypes.oneOfType([_react.PropTypes.string, _react.PropTypes.number])
+	    schema: _react.PropTypes.object.isRequired,
+	    id: _react.PropTypes.string.isRequired,
+	    placeholder: _react.PropTypes.string,
+	    value: _react.PropTypes.oneOfType([_react2.default.PropTypes.string, _react2.default.PropTypes.number]),
+	    required: _react.PropTypes.bool,
+	    onChange: _react.PropTypes.func
 	  };
 	}
 
@@ -26655,7 +26478,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 194 */
+/* 192 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {"use strict";
@@ -26692,8 +26515,6 @@
 	  var placeholder = _ref.placeholder;
 	  var value = _ref.value;
 	  var required = _ref.required;
-	  var disabled = _ref.disabled;
-	  var readonly = _ref.readonly;
 	  var multiple = _ref.multiple;
 	  var _onChange = _ref.onChange;
 
@@ -26705,9 +26526,6 @@
 	      className: "form-control",
 	      title: placeholder,
 	      value: value,
-	      required: required,
-	      disabled: disabled,
-	      readOnly: readonly,
 	      onChange: function onChange(event) {
 	        var newValue = void 0;
 	        if (multiple) {
@@ -26752,469 +26570,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 195 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function(process) {"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _BaseInput = __webpack_require__(190);
-
-	var _BaseInput2 = _interopRequireDefault(_BaseInput);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function TextWidget(props) {
-	  return _react2.default.createElement(_BaseInput2.default, props);
-	}
-
-	if (process.env.NODE_ENV !== "production") {
-	  TextWidget.propTypes = {
-	    value: _react.PropTypes.oneOfType([_react2.default.PropTypes.string, _react2.default.PropTypes.number])
-	  };
-	}
-
-	exports.default = TextWidget;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
-
-/***/ },
-/* 196 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function(process) {"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _BaseInput = __webpack_require__(190);
-
-	var _BaseInput2 = _interopRequireDefault(_BaseInput);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function DateWidget(props) {
-	  return _react2.default.createElement(_BaseInput2.default, _extends({ type: "date" }, props));
-	}
-
-	if (process.env.NODE_ENV !== "production") {
-	  DateWidget.propTypes = {
-	    value: _react.PropTypes.string
-	  };
-	}
-
-	exports.default = DateWidget;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
-
-/***/ },
-/* 197 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function(process) {"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _BaseInput = __webpack_require__(190);
-
-	var _BaseInput2 = _interopRequireDefault(_BaseInput);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function fromJSONDate(jsonDate) {
-	  return jsonDate ? jsonDate.slice(0, 19) : "";
-	}
-
-	function toJSONDate(dateString) {
-	  if (dateString) {
-	    return new Date(dateString).toJSON();
-	  }
-	}
-
-	function DateTimeWidget(props) {
-	  var value = props.value;
-	  var _onChange = props.onChange;
-
-	  return _react2.default.createElement(_BaseInput2.default, _extends({
-	    type: "datetime-local"
-	  }, props, {
-	    value: fromJSONDate(value),
-	    onChange: function onChange(value) {
-	      return _onChange(toJSONDate(value));
-	    }
-	  }));
-	}
-
-	if (process.env.NODE_ENV !== "production") {
-	  DateTimeWidget.propTypes = {
-	    value: _react.PropTypes.string
-	  };
-	}
-
-	exports.default = DateTimeWidget;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
-
-/***/ },
-/* 198 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function(process) {"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _utils = __webpack_require__(181);
-
-	var _SelectWidget = __webpack_require__(194);
-
-	var _SelectWidget2 = _interopRequireDefault(_SelectWidget);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	function rangeOptions(type, start, stop) {
-	  var options = [{ value: -1, label: type }];
-	  for (var i = start; i <= stop; i++) {
-	    options.push({ value: i, label: (0, _utils.pad)(i, 2) });
-	  }
-	  return options;
-	}
-
-	function readyForChange(state) {
-	  return Object.keys(state).every(function (key) {
-	    return state[key] !== -1;
-	  });
-	}
-
-	function DateElement(props) {
-	  var type = props.type;
-	  var range = props.range;
-	  var value = props.value;
-	  var select = props.select;
-	  var rootId = props.rootId;
-	  var disabled = props.disabled;
-	  var readonly = props.readonly;
-
-	  var id = rootId + "_" + type;
-	  return _react2.default.createElement(_SelectWidget2.default, {
-	    schema: { type: "integer" },
-	    id: id,
-	    className: "form-control",
-	    options: rangeOptions(type, range[0], range[1]),
-	    value: value,
-	    disabled: disabled,
-	    readonly: readonly,
-	    onChange: function onChange(value) {
-	      return select(type, value);
-	    } });
-	}
-
-	var AltDateWidget = function (_Component) {
-	  _inherits(AltDateWidget, _Component);
-
-	  function AltDateWidget(props) {
-	    _classCallCheck(this, AltDateWidget);
-
-	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(AltDateWidget).call(this, props));
-
-	    _this.onChange = function (property, value) {
-	      _this.setState(_defineProperty({}, property, value), function () {
-	        // Only propagate to parent state if we have a complete date{time}
-	        if (readyForChange(_this.state)) {
-	          _this.props.onChange((0, _utils.toDateString)(_this.state, _this.props.time));
-	        }
-	      });
-	    };
-
-	    _this.setNow = function (event) {
-	      event.preventDefault();
-	      var _this$props = _this.props;
-	      var time = _this$props.time;
-	      var disabled = _this$props.disabled;
-	      var readonly = _this$props.readonly;
-	      var onChange = _this$props.onChange;
-
-	      if (disabled || readonly) {
-	        return;
-	      }
-	      var nowDateObj = (0, _utils.parseDateString)(new Date().toJSON(), time);
-	      _this.setState(nowDateObj, function () {
-	        return onChange((0, _utils.toDateString)(_this.state, time));
-	      });
-	    };
-
-	    _this.clear = function (event) {
-	      event.preventDefault();
-	      var _this$props2 = _this.props;
-	      var time = _this$props2.time;
-	      var disabled = _this$props2.disabled;
-	      var readonly = _this$props2.readonly;
-	      var onChange = _this$props2.onChange;
-
-	      if (disabled || readonly) {
-	        return;
-	      }
-	      _this.setState((0, _utils.parseDateString)("", time), function () {
-	        return onChange(undefined);
-	      });
-	    };
-
-	    _this.state = (0, _utils.parseDateString)(props.value, props.time);
-	    return _this;
-	  }
-
-	  _createClass(AltDateWidget, [{
-	    key: "componentWillReceiveProps",
-	    value: function componentWillReceiveProps(nextProps) {
-	      this.setState((0, _utils.parseDateString)(nextProps.value, nextProps.time));
-	    }
-	  }, {
-	    key: "shouldComponentUpdate",
-	    value: function shouldComponentUpdate(nextProps, nextState) {
-	      return (0, _utils.shouldRender)(this, nextProps, nextState);
-	    }
-	  }, {
-	    key: "render",
-	    value: function render() {
-	      var _this2 = this;
-
-	      var _props = this.props;
-	      var id = _props.id;
-	      var disabled = _props.disabled;
-	      var readonly = _props.readonly;
-
-	      return _react2.default.createElement(
-	        "ul",
-	        { className: "list-inline" },
-	        this.dateElementProps.map(function (elemProps, i) {
-	          return _react2.default.createElement(
-	            "li",
-	            { key: i },
-	            _react2.default.createElement(DateElement, _extends({
-	              rootId: id,
-	              select: _this2.onChange
-	            }, elemProps, {
-	              disabled: disabled,
-	              readonly: readonly }))
-	          );
-	        }),
-	        _react2.default.createElement(
-	          "li",
-	          null,
-	          _react2.default.createElement(
-	            "a",
-	            { href: "#", className: "btn btn-info btn-now",
-	              onClick: this.setNow },
-	            "Now"
-	          )
-	        ),
-	        _react2.default.createElement(
-	          "li",
-	          null,
-	          _react2.default.createElement(
-	            "a",
-	            { href: "#", className: "btn btn-warning btn-clear",
-	              onClick: this.clear },
-	            "Clear"
-	          )
-	        )
-	      );
-	    }
-	  }, {
-	    key: "dateElementProps",
-	    get: function get() {
-	      var time = this.props.time;
-	      var _state = this.state;
-	      var year = _state.year;
-	      var month = _state.month;
-	      var day = _state.day;
-	      var hour = _state.hour;
-	      var minute = _state.minute;
-	      var second = _state.second;
-
-	      var data = [{ type: "year", range: [1900, 2020], value: year }, { type: "month", range: [1, 12], value: month }, { type: "day", range: [1, 31], value: day }];
-	      if (time) {
-	        data.push({ type: "hour", range: [0, 23], value: hour }, { type: "minute", range: [0, 59], value: minute }, { type: "second", range: [0, 59], value: second });
-	      }
-	      return data;
-	    }
-	  }]);
-
-	  return AltDateWidget;
-	}(_react.Component);
-
-	AltDateWidget.defaultProps = {
-	  time: false,
-	  disabled: false,
-	  readonly: false
-	};
-
-
-	if (process.env.NODE_ENV !== "production") {
-	  AltDateWidget.propTypes = {
-	    schema: _react.PropTypes.object.isRequired,
-	    id: _react.PropTypes.string.isRequired,
-	    placeholder: _react.PropTypes.string,
-	    value: _react2.default.PropTypes.string,
-	    required: _react.PropTypes.bool,
-	    disabled: _react.PropTypes.bool,
-	    readonly: _react.PropTypes.bool,
-	    onChange: _react.PropTypes.func,
-	    time: _react.PropTypes.bool
-	  };
-	}
-
-	exports.default = AltDateWidget;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
-
-/***/ },
-/* 199 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function(process) {"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _AltDateWidget = __webpack_require__(198);
-
-	var _AltDateWidget2 = _interopRequireDefault(_AltDateWidget);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function AltDateTimeWidget(props) {
-	  return _react2.default.createElement(_AltDateWidget2.default, _extends({ time: true }, props));
-	}
-
-	if (process.env.NODE_ENV !== "production") {
-	  AltDateTimeWidget.propTypes = {
-	    schema: _react.PropTypes.object.isRequired,
-	    id: _react.PropTypes.string.isRequired,
-	    placeholder: _react.PropTypes.string,
-	    value: _react2.default.PropTypes.string,
-	    required: _react.PropTypes.bool,
-	    onChange: _react.PropTypes.func
-	  };
-	}
-
-	exports.default = AltDateTimeWidget;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
-
-/***/ },
-/* 200 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function(process) {"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _BaseInput = __webpack_require__(190);
-
-	var _BaseInput2 = _interopRequireDefault(_BaseInput);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function EmailWidget(props) {
-	  return _react2.default.createElement(_BaseInput2.default, _extends({ type: "email" }, props));
-	}
-
-	if (process.env.NODE_ENV !== "production") {
-	  EmailWidget.propTypes = {
-	    value: _react.PropTypes.string
-	  };
-	}
-
-	exports.default = EmailWidget;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
-
-/***/ },
-/* 201 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function(process) {"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _BaseInput = __webpack_require__(190);
-
-	var _BaseInput2 = _interopRequireDefault(_BaseInput);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function URLWidget(props) {
-	  return _react2.default.createElement(_BaseInput2.default, _extends({ type: "url" }, props));
-	}
-
-	if (process.env.NODE_ENV !== "production") {
-	  URLWidget.propTypes = {
-	    value: _react.PropTypes.string
-	  };
-	}
-
-	exports.default = URLWidget;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
-
-/***/ },
-/* 202 */
+/* 193 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {"use strict";
@@ -27235,18 +26591,335 @@
 	  var placeholder = _ref.placeholder;
 	  var value = _ref.value;
 	  var required = _ref.required;
-	  var disabled = _ref.disabled;
-	  var readonly = _ref.readonly;
+	  var _onChange = _ref.onChange;
+
+	  return _react2.default.createElement("input", { type: "text",
+	    id: id,
+	    className: "form-control",
+	    value: value,
+	    placeholder: placeholder,
+	    required: required,
+	    onChange: function onChange(event) {
+	      return _onChange(event.target.value);
+	    } });
+	}
+
+	if (process.env.NODE_ENV !== "production") {
+	  TextWidget.propTypes = {
+	    schema: _react.PropTypes.object.isRequired,
+	    id: _react.PropTypes.string.isRequired,
+	    placeholder: _react.PropTypes.string,
+	    value: _react.PropTypes.oneOfType([_react2.default.PropTypes.string, _react2.default.PropTypes.number]),
+	    required: _react.PropTypes.bool,
+	    onChange: _react.PropTypes.func
+	  };
+	}
+
+	exports.default = TextWidget;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
+
+/***/ },
+/* 194 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process) {"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _utils = __webpack_require__(181);
+
+	var _SelectWidget = __webpack_require__(192);
+
+	var _SelectWidget2 = _interopRequireDefault(_SelectWidget);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	function rangeOptions(start, stop) {
+	  var options = [];
+	  for (var i = start; i <= stop; i++) {
+	    options.push({ value: i, label: (0, _utils.pad)(i, 2) });
+	  }
+	  return options;
+	}
+
+	function DateElement(_ref) {
+	  var type = _ref.type;
+	  var range = _ref.range;
+	  var value = _ref.value;
+	  var select = _ref.select;
+	  var rootId = _ref.rootId;
+
+	  var id = rootId + "_" + type;
+	  return _react2.default.createElement(
+	    "li",
+	    null,
+	    _react2.default.createElement(_SelectWidget2.default, {
+	      schema: { type: "integer" },
+	      id: id,
+	      className: "form-control",
+	      options: rangeOptions(range[0], range[1]),
+	      value: value,
+	      onChange: select }),
+	    _react2.default.createElement(
+	      "p",
+	      { className: "text-center help-block" },
+	      _react2.default.createElement(
+	        "label",
+	        { htmlFor: id },
+	        _react2.default.createElement(
+	          "small",
+	          null,
+	          type
+	        )
+	      )
+	    )
+	  );
+	}
+
+	var DateTimeWidget = function (_Component) {
+	  _inherits(DateTimeWidget, _Component);
+
+	  function DateTimeWidget(props) {
+	    _classCallCheck(this, DateTimeWidget);
+
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(DateTimeWidget).call(this, props));
+
+	    _this.onChange = function (property, value) {
+	      _this.setState(_defineProperty({}, property, value), function () {
+	        _this.props.onChange((0, _utils.toDateString)(_this.state));
+	      });
+	    };
+
+	    _this.onYearChange = function (value) {
+	      return _this.onChange("year", value);
+	    };
+
+	    _this.onMonthChange = function (value) {
+	      return _this.onChange("month", value);
+	    };
+
+	    _this.onDayChange = function (value) {
+	      return _this.onChange("day", value);
+	    };
+
+	    _this.onHourChange = function (value) {
+	      return _this.onChange("hour", value);
+	    };
+
+	    _this.onMinuteChange = function (value) {
+	      return _this.onChange("minute", value);
+	    };
+
+	    _this.onSecondChange = function (value) {
+	      return _this.onChange("second", value);
+	    };
+
+	    _this.state = (0, _utils.parseDateString)(props.value);
+	    return _this;
+	  }
+
+	  _createClass(DateTimeWidget, [{
+	    key: "componentWillReceiveProps",
+	    value: function componentWillReceiveProps(nextProps) {
+	      this.setState((0, _utils.parseDateString)(nextProps.value));
+	    }
+	  }, {
+	    key: "shouldComponentUpdate",
+	    value: function shouldComponentUpdate(nextProps, nextState) {
+	      return (0, _utils.shouldRender)(this, nextProps, nextState);
+	    }
+	  }, {
+	    key: "render",
+	    value: function render() {
+	      var id = this.props.id;
+	      var _state = this.state;
+	      var year = _state.year;
+	      var month = _state.month;
+	      var day = _state.day;
+	      var hour = _state.hour;
+	      var minute = _state.minute;
+	      var second = _state.second;
+
+	      return _react2.default.createElement(
+	        "ul",
+	        { className: "list-inline" },
+	        _react2.default.createElement(DateElement, { type: "year", rootId: id, range: [1900, 2020],
+	          value: year, select: this.onYearChange }),
+	        _react2.default.createElement(DateElement, { type: "month", rootId: id, range: [1, 12],
+	          value: month, select: this.onMonthChange }),
+	        _react2.default.createElement(DateElement, { type: "day", rootId: id, range: [1, 31],
+	          value: day, select: this.onDayChange }),
+	        _react2.default.createElement(DateElement, { type: "hour", rootId: id, range: [0, 23],
+	          value: hour, select: this.onHourChange }),
+	        _react2.default.createElement(DateElement, { type: "minute", rootId: id, range: [0, 59],
+	          value: minute, select: this.onMinuteChange }),
+	        _react2.default.createElement(DateElement, { type: "second", rootId: id, range: [0, 59],
+	          value: second, select: this.onSecondChange })
+	      );
+	    }
+	  }]);
+
+	  return DateTimeWidget;
+	}(_react.Component);
+
+	if (process.env.NODE_ENV !== "production") {
+	  DateTimeWidget.propTypes = {
+	    schema: _react.PropTypes.object.isRequired,
+	    id: _react.PropTypes.string.isRequired,
+	    placeholder: _react.PropTypes.string,
+	    value: _react2.default.PropTypes.string,
+	    required: _react.PropTypes.bool,
+	    onChange: _react.PropTypes.func
+	  };
+	}
+
+	exports.default = DateTimeWidget;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
+
+/***/ },
+/* 195 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process) {"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function EmailWidget(_ref) {
+	  var schema = _ref.schema;
+	  var id = _ref.id;
+	  var placeholder = _ref.placeholder;
+	  var value = _ref.value;
+	  var required = _ref.required;
+	  var _onChange = _ref.onChange;
+
+	  return _react2.default.createElement("input", { type: "email",
+	    id: id,
+	    className: "form-control",
+	    value: value,
+	    placeholder: placeholder,
+	    required: required,
+	    onChange: function onChange(event) {
+	      return _onChange(event.target.value);
+	    } });
+	}
+
+	if (process.env.NODE_ENV !== "production") {
+	  EmailWidget.propTypes = {
+	    schema: _react.PropTypes.object.isRequired,
+	    id: _react.PropTypes.string.isRequired,
+	    placeholder: _react.PropTypes.string,
+	    value: _react2.default.PropTypes.string,
+	    required: _react.PropTypes.bool,
+	    onChange: _react.PropTypes.func
+	  };
+	}
+
+	exports.default = EmailWidget;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
+
+/***/ },
+/* 196 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process) {"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function URLWidget(_ref) {
+	  var schema = _ref.schema;
+	  var id = _ref.id;
+	  var placeholder = _ref.placeholder;
+	  var value = _ref.value;
+	  var required = _ref.required;
+	  var _onChange = _ref.onChange;
+
+	  return _react2.default.createElement("input", { type: "url",
+	    id: id,
+	    className: "form-control",
+	    value: value,
+	    placeholder: placeholder,
+	    required: required,
+	    onChange: function onChange(event) {
+	      return _onChange(event.target.value);
+	    } });
+	}
+
+	if (process.env.NODE_ENV !== "production") {
+	  URLWidget.propTypes = {
+	    schema: _react.PropTypes.object.isRequired,
+	    id: _react.PropTypes.string.isRequired,
+	    placeholder: _react.PropTypes.string,
+	    value: _react2.default.PropTypes.string,
+	    required: _react.PropTypes.bool,
+	    onChange: _react.PropTypes.func
+	  };
+	}
+
+	exports.default = URLWidget;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
+
+/***/ },
+/* 197 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process) {"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function TextWidget(_ref) {
+	  var schema = _ref.schema;
+	  var id = _ref.id;
+	  var placeholder = _ref.placeholder;
+	  var value = _ref.value;
+	  var required = _ref.required;
 	  var _onChange = _ref.onChange;
 
 	  return _react2.default.createElement("textarea", {
 	    id: id,
 	    className: "form-control",
-	    value: typeof value === "undefined" ? "" : value,
+	    value: value,
 	    placeholder: placeholder,
 	    required: required,
-	    disabled: disabled,
-	    readOnly: readonly,
 	    onChange: function onChange(event) {
 	      return _onChange(event.target.value);
 	    } });
@@ -27267,7 +26940,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 203 */
+/* 198 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {"use strict";
@@ -27300,42 +26973,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 204 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function(process) {"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _BaseInput = __webpack_require__(190);
-
-	var _BaseInput2 = _interopRequireDefault(_BaseInput);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function ColorWidget(props) {
-	  return _react2.default.createElement(_BaseInput2.default, _extends({ type: "color" }, props));
-	}
-
-	if (process.env.NODE_ENV !== "production") {
-	  ColorWidget.propTypes = {
-	    value: _react.PropTypes.string
-	  };
-	}
-
-	exports.default = ColorWidget;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
-
-/***/ },
-/* 205 */
+/* 199 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {"use strict";
@@ -27352,7 +26990,7 @@
 
 	var _utils = __webpack_require__(181);
 
-	var _SelectWidget = __webpack_require__(194);
+	var _SelectWidget = __webpack_require__(192);
 
 	var _SelectWidget2 = _interopRequireDefault(_SelectWidget);
 
@@ -27380,13 +27018,9 @@
 	      var registry = _this$props.registry;
 	      var definitions = registry.definitions;
 
-	      var itemSchema = schema.items;
-	      if ((0, _utils.isFixedItems)(schema) && (0, _utils.allowAdditionalItems)(schema)) {
-	        itemSchema = schema.additionalItems;
-	      }
 	      _this.asyncSetState({
-	        items: items.concat([(0, _utils.getDefaultFormState)(itemSchema, undefined, definitions)])
-	      });
+	        items: items.concat([(0, _utils.getDefaultFormState)(schema.items, undefined, definitions)])
+	      }, { validate: false });
 	    };
 
 	    _this.onDropIndexClick = function (index) {
@@ -27396,7 +27030,7 @@
 	          items: _this.state.items.filter(function (_, i) {
 	            return i !== index;
 	          })
-	        });
+	        }, { validate: false });
 	      };
 	    };
 
@@ -27406,12 +27040,12 @@
 	          items: _this.state.items.map(function (item, i) {
 	            return index === i ? value : item;
 	          })
-	        });
+	        }, { validate: false });
 	      };
 	    };
 
 	    _this.onSelectChange = function (value) {
-	      _this.asyncSetState({ items: value });
+	      _this.asyncSetState({ items: value }, { validate: false });
 	    };
 
 	    _this.state = _this.getStateFromProps(props);
@@ -27445,29 +27079,17 @@
 	    }
 	  }, {
 	    key: "asyncSetState",
-	    value: function asyncSetState(state) {
+	    value: function asyncSetState(state, options) {
 	      var _this2 = this;
 
-	      (0, _utils.setState)(this, state, function () {
-	        _this2.props.onChange(_this2.state.items, { validate: false });
+	      // ensure state is propagated to parent component when it's actually set
+	      this.setState(state, function (_) {
+	        return _this2.props.onChange(_this2.state.items, options);
 	      });
 	    }
 	  }, {
 	    key: "render",
 	    value: function render() {
-	      var schema = this.props.schema;
-
-	      if ((0, _utils.isFixedItems)(schema)) {
-	        return this.renderFixedArray();
-	      }
-	      if ((0, _utils.isMultiSelect)(schema)) {
-	        return this.renderMultiSelect();
-	      }
-	      return this.renderNormalArray();
-	    }
-	  }, {
-	    key: "renderNormalArray",
-	    value: function renderNormalArray() {
 	      var _this3 = this;
 
 	      var _props = this.props;
@@ -27476,24 +27098,36 @@
 	      var errorSchema = _props.errorSchema;
 	      var idSchema = _props.idSchema;
 	      var name = _props.name;
-	      var required = _props.required;
-	      var disabled = _props.disabled;
-	      var readonly = _props.readonly;
 
 	      var title = schema.title || name;
 	      var items = this.state.items;
 	      var _props$registry = this.props.registry;
-	      var definitions = _props$registry.definitions;
 	      var fields = _props$registry.fields;
-	      var TitleField = fields.TitleField;
+	      var definitions = _props$registry.definitions;
+	      var SchemaField = fields.SchemaField;
 
 	      var itemsSchema = (0, _utils.retrieveSchema)(schema.items, definitions);
+	      if ((0, _utils.isMultiSelect)(schema)) {
+	        return _react2.default.createElement(_SelectWidget2.default, {
+	          id: idSchema && idSchema.id,
+	          multiple: true,
+	          onChange: this.onSelectChange,
+	          options: (0, _utils.optionsList)(itemsSchema),
+	          schema: schema,
+	          title: title,
+	          value: items
+	        });
+	      }
 
 	      return _react2.default.createElement(
 	        "fieldset",
 	        {
 	          className: "field field-array field-array-of-" + itemsSchema.type },
-	        title ? _react2.default.createElement(TitleField, { title: title, required: required }) : null,
+	        title ? _react2.default.createElement(
+	          "legend",
+	          null,
+	          title
+	        ) : null,
 	        schema.description ? _react2.default.createElement(
 	          "div",
 	          { className: "field-description" },
@@ -27506,162 +27140,50 @@
 	            var itemErrorSchema = errorSchema ? errorSchema[index] : undefined;
 	            var itemIdPrefix = idSchema.id + "_" + index;
 	            var itemIdSchema = (0, _utils.toIdSchema)(itemsSchema, itemIdPrefix, definitions);
-	            return _this3.renderArrayFieldItem({
-	              index: index,
-	              itemSchema: itemsSchema,
-	              itemIdSchema: itemIdSchema,
-	              itemErrorSchema: itemErrorSchema,
-	              itemData: items[index],
-	              itemUiSchema: uiSchema.items
-	            });
+	            return _react2.default.createElement(
+	              "div",
+	              { key: index },
+	              _react2.default.createElement(
+	                "div",
+	                { className: "col-xs-10" },
+	                _react2.default.createElement(SchemaField, {
+	                  schema: itemsSchema,
+	                  uiSchema: uiSchema.items,
+	                  formData: items[index],
+	                  errorSchema: itemErrorSchema,
+	                  idSchema: itemIdSchema,
+	                  required: _this3.isItemRequired(itemsSchema),
+	                  onChange: _this3.onChangeForIndex(index),
+	                  registry: _this3.props.registry })
+	              ),
+	              _react2.default.createElement(
+	                "div",
+	                { className: "col-xs-2 array-item-remove text-right" },
+	                _react2.default.createElement(
+	                  "button",
+	                  { type: "button", className: "btn btn-danger col-xs-12",
+	                    tabIndex: "-1",
+	                    onClick: _this3.onDropIndexClick(index) },
+	                  "Delete"
+	                )
+	              )
+	            );
 	          })
 	        ),
-	        _react2.default.createElement(AddButton, {
-	          onClick: this.onAddClick, disabled: disabled || readonly })
-	      );
-	    }
-	  }, {
-	    key: "renderMultiSelect",
-	    value: function renderMultiSelect() {
-	      var _props2 = this.props;
-	      var schema = _props2.schema;
-	      var idSchema = _props2.idSchema;
-	      var name = _props2.name;
-	      var disabled = _props2.disabled;
-	      var readonly = _props2.readonly;
-
-	      var title = schema.title || name;
-	      var items = this.state.items;
-	      var definitions = this.props.registry.definitions;
-
-	      var itemsSchema = (0, _utils.retrieveSchema)(schema.items, definitions);
-	      return _react2.default.createElement(_SelectWidget2.default, {
-	        id: idSchema && idSchema.id,
-	        multiple: true,
-	        onChange: this.onSelectChange,
-	        options: (0, _utils.optionsList)(itemsSchema),
-	        schema: schema,
-	        title: title,
-	        value: items,
-	        disabled: disabled,
-	        readonly: readonly
-	      });
-	    }
-	  }, {
-	    key: "renderFixedArray",
-	    value: function renderFixedArray() {
-	      var _this4 = this;
-
-	      var _props3 = this.props;
-	      var schema = _props3.schema;
-	      var uiSchema = _props3.uiSchema;
-	      var errorSchema = _props3.errorSchema;
-	      var idSchema = _props3.idSchema;
-	      var name = _props3.name;
-	      var required = _props3.required;
-	      var disabled = _props3.disabled;
-	      var readonly = _props3.readonly;
-
-	      var title = schema.title || name;
-	      var items = this.state.items;
-	      var _props$registry2 = this.props.registry;
-	      var definitions = _props$registry2.definitions;
-	      var fields = _props$registry2.fields;
-	      var TitleField = fields.TitleField;
-
-	      var itemSchemas = schema.items.map(function (item) {
-	        return (0, _utils.retrieveSchema)(item, definitions);
-	      });
-	      var additionalSchema = (0, _utils.allowAdditionalItems)(schema) ? (0, _utils.retrieveSchema)(schema.additionalItems, definitions) : null;
-
-	      if (!items || items.length < itemSchemas.length) {
-	        // to make sure at least all fixed items are generated
-	        items = items || [];
-	        items = items.concat(new Array(itemSchemas.length - items.length));
-	      }
-
-	      return _react2.default.createElement(
-	        "fieldset",
-	        { className: "field field-array field-array-fixed-items" },
-	        title ? _react2.default.createElement(TitleField, { title: title, required: required }) : null,
-	        schema.description ? _react2.default.createElement(
-	          "div",
-	          { className: "field-description" },
-	          schema.description
-	        ) : null,
 	        _react2.default.createElement(
 	          "div",
-	          { className: "row array-item-list" },
-	          items.map(function (item, index) {
-	            var additional = index >= itemSchemas.length;
-	            var itemSchema = additional ? additionalSchema : itemSchemas[index];
-	            var itemIdPrefix = idSchema.id + "_" + index;
-	            var itemIdSchema = (0, _utils.toIdSchema)(itemSchema, itemIdPrefix, definitions);
-	            var itemUiSchema = additional ? uiSchema.additionalItems || {} : Array.isArray(uiSchema.items) ? uiSchema.items[index] : uiSchema.items || {};
-	            var itemErrorSchema = errorSchema ? errorSchema[index] : undefined;
-
-	            return _this4.renderArrayFieldItem({
-	              index: index,
-	              removable: additional,
-	              itemSchema: itemSchema,
-	              itemData: item,
-	              itemUiSchema: itemUiSchema,
-	              itemIdSchema: itemIdSchema,
-	              itemErrorSchema: itemErrorSchema
-	            });
-	          })
-	        ),
-	        additionalSchema ? _react2.default.createElement(AddButton, {
-	          onClick: this.onAddClick,
-	          disabled: disabled || readonly }) : null
-	      );
-	    }
-	  }, {
-	    key: "renderArrayFieldItem",
-	    value: function renderArrayFieldItem(_ref) {
-	      var index = _ref.index;
-	      var _ref$removable = _ref.removable;
-	      var removable = _ref$removable === undefined ? true : _ref$removable;
-	      var itemSchema = _ref.itemSchema;
-	      var itemData = _ref.itemData;
-	      var itemUiSchema = _ref.itemUiSchema;
-	      var itemIdSchema = _ref.itemIdSchema;
-	      var itemErrorSchema = _ref.itemErrorSchema;
-	      var SchemaField = this.props.registry.fields.SchemaField;
-	      var _props4 = this.props;
-	      var disabled = _props4.disabled;
-	      var readonly = _props4.readonly;
-
-	      return _react2.default.createElement(
-	        "div",
-	        { key: index },
-	        _react2.default.createElement(
-	          "div",
-	          { className: removable ? "col-xs-10" : "col-xs-12" },
-	          _react2.default.createElement(SchemaField, {
-	            schema: itemSchema,
-	            uiSchema: itemUiSchema,
-	            formData: itemData,
-	            errorSchema: itemErrorSchema,
-	            idSchema: itemIdSchema,
-	            required: this.isItemRequired(itemSchema),
-	            onChange: this.onChangeForIndex(index),
-	            registry: this.props.registry,
-	            disabled: this.props.disabled,
-	            readonly: this.props.readonly })
-	        ),
-	        removable ? _react2.default.createElement(
-	          "div",
-	          { className: "col-xs-2 array-item-remove text-right" },
+	          { className: "row" },
 	          _react2.default.createElement(
-	            "button",
-	            { type: "button", className: "btn btn-danger col-xs-12",
-	              tabIndex: "-1",
-	              disabled: disabled || readonly,
-	              onClick: this.onDropIndexClick(index) },
-	            "Delete"
+	            "p",
+	            { className: "col-xs-2 col-xs-offset-10 array-item-add text-right" },
+	            _react2.default.createElement(
+	              "button",
+	              { type: "button", className: "btn btn-info col-xs-12",
+	                tabIndex: "-1", onClick: this.onAddClick },
+	              "Add"
+	            )
 	          )
-	        ) : null
+	        )
 	      );
 	    }
 	  }, {
@@ -27679,33 +27201,9 @@
 	ArrayField.defaultProps = {
 	  uiSchema: {},
 	  idSchema: {},
-	  registry: (0, _utils.getDefaultRegistry)(),
-	  required: false,
-	  disabled: false,
-	  readonly: false
+	  registry: (0, _utils.getDefaultRegistry)()
 	};
 
-
-	function AddButton(_ref2) {
-	  var onClick = _ref2.onClick;
-	  var disabled = _ref2.disabled;
-
-	  return _react2.default.createElement(
-	    "div",
-	    { className: "row" },
-	    _react2.default.createElement(
-	      "p",
-	      { className: "col-xs-2 col-xs-offset-10 array-item-add text-right" },
-	      _react2.default.createElement(
-	        "button",
-	        { type: "button", className: "btn btn-info col-xs-12",
-	          tabIndex: "-1", onClick: onClick,
-	          disabled: disabled },
-	        "Add"
-	      )
-	    )
-	  );
-	}
 
 	if (process.env.NODE_ENV !== "production") {
 	  ArrayField.propTypes = {
@@ -27715,9 +27213,6 @@
 	    errorSchema: _react.PropTypes.object,
 	    onChange: _react.PropTypes.func.isRequired,
 	    formData: _react.PropTypes.array,
-	    required: _react.PropTypes.bool,
-	    disabled: _react.PropTypes.bool,
-	    readonly: _react.PropTypes.bool,
 	    registry: _react.PropTypes.shape({
 	      widgets: _react.PropTypes.objectOf(_react.PropTypes.func).isRequired,
 	      fields: _react.PropTypes.objectOf(_react.PropTypes.func).isRequired,
@@ -27730,7 +27225,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 206 */
+/* 200 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {"use strict";
@@ -27747,7 +27242,7 @@
 
 	var _utils = __webpack_require__(181);
 
-	var _CheckboxWidget = __webpack_require__(207);
+	var _CheckboxWidget = __webpack_require__(201);
 
 	var _CheckboxWidget2 = _interopRequireDefault(_CheckboxWidget);
 
@@ -27768,8 +27263,6 @@
 	  var formData = props.formData;
 	  var registry = props.registry;
 	  var required = props.required;
-	  var disabled = props.disabled;
-	  var readonly = props.readonly;
 	  var onChange = props.onChange;
 	  var title = schema.title;
 	  var description = schema.description;
@@ -27783,9 +27276,7 @@
 	    label: title || name,
 	    placeholder: description,
 	    value: (0, _utils.defaultFieldValue)(formData, schema),
-	    required: required,
-	    disabled: disabled,
-	    readonly: readonly
+	    required: required
 	  };
 	  if (widget) {
 	    var Widget = (0, _utils.getAlternativeWidget)(schema, widget, widgets);
@@ -27802,8 +27293,6 @@
 	    onChange: _react.PropTypes.func.isRequired,
 	    formData: _react.PropTypes.bool,
 	    required: _react.PropTypes.bool,
-	    disabled: _react.PropTypes.bool,
-	    readonly: _react.PropTypes.bool,
 	    registry: _react.PropTypes.shape({
 	      widgets: _react.PropTypes.objectOf(_react.PropTypes.func).isRequired,
 	      fields: _react.PropTypes.objectOf(_react.PropTypes.func).isRequired,
@@ -27814,16 +27303,14 @@
 
 	BooleanField.defaultProps = {
 	  uiSchema: {},
-	  registry: (0, _utils.getDefaultRegistry)(),
-	  disabled: false,
-	  readonly: false
+	  registry: (0, _utils.getDefaultRegistry)()
 	};
 
 	exports.default = BooleanField;
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 207 */
+/* 201 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {"use strict";
@@ -27843,23 +27330,21 @@
 	  var id = _ref.id;
 	  var value = _ref.value;
 	  var required = _ref.required;
-	  var disabled = _ref.disabled;
 	  var placeholder = _ref.placeholder;
 	  var _onChange = _ref.onChange;
 	  var label = _ref.label;
 
 	  return _react2.default.createElement(
 	    "div",
-	    { className: "checkbox " + (disabled ? "disabled" : "") },
+	    { className: "checkbox" },
 	    _react2.default.createElement(
 	      "label",
 	      null,
 	      _react2.default.createElement("input", { type: "checkbox",
 	        id: id,
 	        title: placeholder,
-	        checked: typeof value === "undefined" ? false : value,
+	        checked: value,
 	        required: required,
-	        disabled: disabled,
 	        onChange: function onChange(event) {
 	          return _onChange(event.target.checked);
 	        } }),
@@ -27886,7 +27371,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 208 */
+/* 202 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {"use strict";
@@ -27903,7 +27388,7 @@
 
 	var _utils = __webpack_require__(181);
 
-	var _StringField = __webpack_require__(209);
+	var _StringField = __webpack_require__(203);
 
 	var _StringField2 = _interopRequireDefault(_StringField);
 
@@ -27934,7 +27419,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 209 */
+/* 203 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {"use strict";
@@ -27951,11 +27436,11 @@
 
 	var _utils = __webpack_require__(181);
 
-	var _TextWidget = __webpack_require__(195);
+	var _TextWidget = __webpack_require__(193);
 
 	var _TextWidget2 = _interopRequireDefault(_TextWidget);
 
-	var _SelectWidget = __webpack_require__(194);
+	var _SelectWidget = __webpack_require__(192);
 
 	var _SelectWidget2 = _interopRequireDefault(_SelectWidget);
 
@@ -27969,8 +27454,6 @@
 	  var formData = props.formData;
 	  var registry = props.registry;
 	  var required = props.required;
-	  var disabled = props.disabled;
-	  var readonly = props.readonly;
 	  var onChange = props.onChange;
 	  var title = schema.title;
 	  var description = schema.description;
@@ -27984,9 +27467,7 @@
 	    placeholder: description,
 	    onChange: onChange,
 	    value: (0, _utils.defaultFieldValue)(formData, schema),
-	    required: required,
-	    disabled: disabled,
-	    readonly: readonly
+	    required: required
 	  };
 	  if (Array.isArray(schema.enum)) {
 	    if (widget) {
@@ -28013,24 +27494,20 @@
 	      fields: _react.PropTypes.objectOf(_react.PropTypes.func).isRequired,
 	      definitions: _react.PropTypes.object.isRequired
 	    }),
-	    required: _react.PropTypes.bool,
-	    disabled: _react.PropTypes.bool,
-	    readonly: _react.PropTypes.bool
+	    required: _react.PropTypes.bool
 	  };
 	}
 
 	StringField.defaultProps = {
 	  uiSchema: {},
-	  registry: (0, _utils.getDefaultRegistry)(),
-	  disabled: false,
-	  readonly: false
+	  registry: (0, _utils.getDefaultRegistry)()
 	};
 
 	exports.default = StringField;
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 210 */
+/* 204 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {"use strict";
@@ -28105,7 +27582,8 @@
 	    value: function asyncSetState(state) {
 	      var _this2 = this;
 
-	      (0, _utils.setState)(this, state, function () {
+	      // ensure state is propagated to parent component when it's actually set
+	      this.setState(state, function (_) {
 	        return _this2.props.onChange(_this2.state);
 	      });
 	    }
@@ -28119,9 +27597,6 @@
 	      var errorSchema = _props.errorSchema;
 	      var idSchema = _props.idSchema;
 	      var name = _props.name;
-	      var required = _props.required;
-	      var disabled = _props.disabled;
-	      var readonly = _props.readonly;
 	      var _props$registry = this.props.registry;
 	      var definitions = _props$registry.definitions;
 	      var fields = _props$registry.fields;
@@ -28161,7 +27636,7 @@
 	      return _react2.default.createElement(
 	        "fieldset",
 	        null,
-	        title ? _react2.default.createElement(TitleField, { title: title, required: required }) : null,
+	        title ? _react2.default.createElement(TitleField, { title: title }) : null,
 	        schema.description ? _react2.default.createElement(
 	          "p",
 	          { className: "field-description" },
@@ -28177,9 +27652,7 @@
 	            idSchema: idSchema[name],
 	            formData: _this3.state[name],
 	            onChange: _this3.onPropertyChange(name),
-	            registry: _this3.props.registry,
-	            disabled: disabled,
-	            readonly: readonly });
+	            registry: _this3.props.registry });
 	        })
 	      );
 	    }
@@ -28192,10 +27665,7 @@
 	  uiSchema: {},
 	  errorSchema: {},
 	  idSchema: {},
-	  registry: (0, _utils.getDefaultRegistry)(),
-	  required: false,
-	  disabled: false,
-	  readonly: false
+	  registry: (0, _utils.getDefaultRegistry)()
 	};
 
 
@@ -28208,8 +27678,6 @@
 	    onChange: _react.PropTypes.func.isRequired,
 	    formData: _react.PropTypes.object,
 	    required: _react.PropTypes.bool,
-	    disabled: _react.PropTypes.bool,
-	    readonly: _react.PropTypes.bool,
 	    registry: _react.PropTypes.shape({
 	      widgets: _react.PropTypes.objectOf(_react.PropTypes.func).isRequired,
 	      fields: _react.PropTypes.objectOf(_react.PropTypes.func).isRequired,
@@ -28222,7 +27690,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 211 */
+/* 205 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -28252,7 +27720,7 @@
 	}
 
 /***/ },
-/* 212 */
+/* 206 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -28298,7 +27766,7 @@
 	}
 
 /***/ },
-/* 213 */
+/* 207 */
 /***/ function(module, exports) {
 
 	var schema = {
@@ -29228,7 +28696,7 @@
 	module.exports = schema;
 
 /***/ },
-/* 214 */
+/* 208 */
 /***/ function(module, exports) {
 
 	var uiSchema = {
@@ -29320,7 +28788,7 @@
 	module.exports = uiSchema;
 
 /***/ },
-/* 215 */
+/* 209 */
 /***/ function(module, exports) {
 
 	var dummyData = {
