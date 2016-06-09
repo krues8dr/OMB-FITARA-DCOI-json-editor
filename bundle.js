@@ -89,9 +89,6 @@
 
 	walk(DCOIschema, formUiSchema, initialFormData);
 
-	// IE temporary fix
-	initialFormData = null;
-
 	// Covering browsers without Object.assign support (IE 9-11)
 	// require('./js/polyfill.js');
 
