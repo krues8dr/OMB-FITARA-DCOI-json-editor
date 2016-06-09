@@ -7,7 +7,7 @@
     "gh-gen": "rimraf bin && webpack && npm run gh-static",
     "gh-static": "cp src/index.html bin/index.html && cp node_modules/bootstrap/dist/css/bootstrap.min.css bin/bootstrap.min.css && cp src/styles.css bin/styles.css",
     "start": "npm run gh-gen && node devServer.js",
-    "publis-to-gh": "npm run gh-gen && gh-pages --dist bin/"
+    "publish-to-gh": "npm run gh-gen && gh-pages --dist bin/"
   },
   "repository": {
     "type": "git",
