@@ -28,11 +28,13 @@
     <div class="intro">
         <h4>Guidance</h4>
         <p>
-            Please enter the relevant data into each box. Note that some boxes will only accept numerical data.
-            In the event that the data does not match the parameters for a specific box, an error statement will appear below describing what sort of data is required to fix the error.
-            After filling in the data, click the submit button at the bottom.
-            The tool will produce the entered data in a JSON format in a box at the very end. Please copy this output into a text file and save it in a JSON format.
-            For additional guidance, please visit the <a target="_blank" href="https://management.cio.gov/schema">management.cio.gov/schema</a>.
+            Please enter the relevant data into each box. You can either enter the data manually or upload the data automatically.
+        </p>
+        <p>
+            To upload the data automatically, please click the ‘Load my own data’ button below, after which a new dialogue box will appear. In this box, please enter your data in a JSON format and then click the ‘Load data’ button at the bottom. Note that some boxes will only accept numerical data. In the event that the data does not match the parameters for a specific box, an error statement will appear below describing what sort of data is required to fix the error.
+        </p>
+        <p>
+            After filling in the data, either manually or by an upload, click the submit button at the very bottom. The tool will produce the entered data in a JSON format in a box at the very end. Please copy this output into a text file and save it in a JSON format for formal submission to OMB. Please note that clicking submit does not mean that the output is actually submitted to OMB. The output must still be submitted to OMB after the JSON schema is created by this tool. For additional guidance, please visit <a href="https://management.cio.gov/schema" target="_blank">management.cio.gov/schema</a>.
         </p>
     </div>
 
@@ -59,13 +61,13 @@
         </ol>
     </div>
 </div>
-<div id="controls" class="row"></div>
-<div id="input" class="row"></div>
-<div id="app" class="row"></div>
-<div id="out" class="row"></div>
-<p class="text-center" class="row">
-    <a href="https://github.com/REI-Systems/OMB-FITARA-DCOI-json-editor">GitHub</a>
-</p>
-<script src="./bundle.js"></script>
+<div id="app" class="row app"></div>
 </body>
+<footer>
+    <p class="text-center" class="row">
+        <a href="https://github.com/REI-Systems/OMB-FITARA-DCOI-json-editor">GitHub</a>
+    </p>
+    <div id="version" class="pull-right text-info small">v</div>
+</footer>
+<script src="./bundle.js"></script>
 </html>
