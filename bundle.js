@@ -26202,7 +26202,7 @@
 	        }
 	      } finally {
 	        if (_didIteratorError) {
-	          throw _iteratorError;
+	          throw _didIteratorError;
 	        }
 	      }
 	    }
@@ -26220,23 +26220,18 @@
 	}
 
 	function toErrorList(errorSchema) {
-	  var fieldName = arguments.length <= 1 || arguments[1] === undefined ? "root" : arguments[1];
-
-	  // XXX: We should transform fieldName as a full field path string.
-	  var errorList = [];
-	  if ("__errors" in errorSchema) {
-	    errorList = errorList.concat(errorSchema.__errors.map(function (stack) {
-	      return {
-	        stack: fieldName + ": " + stack
-	      };
-	    }));
-	  }
 	  return Object.keys(errorSchema).reduce(function (acc, key) {
-	    if (key !== "__errors") {
-	      acc = acc.concat(toErrorList(errorSchema[key], key));
+	    var field = errorSchema[key];
+	    if ("__errors" in field) {
+	      // XXX: We should transform key as a full field path string.
+	      acc = acc.concat(field.__errors.map(function (stack) {
+	        return { stack: key + " " + stack };
+	      }));
+	    } else if ((0, _utils.isObject)(field)) {
+	      acc = acc.concat(toErrorList(field));
 	    }
 	    return acc;
-	  }, errorList);
+	  }, []);
 	}
 
 	function createErrorHandler(formData) {
