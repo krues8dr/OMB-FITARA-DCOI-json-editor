@@ -48,9 +48,9 @@
 
 	var ReactDOM = __webpack_require__(38);
 	var JSONSchemaForm = __webpack_require__(168);
-	var DCOIschema = __webpack_require__(218);
-	var formUiSchema = __webpack_require__(219);
-	var dummyData = __webpack_require__(220);
+	var DCOIschema = __webpack_require__(216);
+	var formUiSchema = __webpack_require__(217);
+	var dummyData = __webpack_require__(218);
 
 	var Form = JSONSchemaForm.default;
 
@@ -20550,13 +20550,13 @@
 
 	var _DescriptionField3 = _interopRequireDefault(_DescriptionField2);
 
-	var _ErrorList = __webpack_require__(206);
+	var _ErrorList = __webpack_require__(204);
 
 	var _ErrorList2 = _interopRequireDefault(_ErrorList);
 
 	var _utils = __webpack_require__(171);
 
-	var _validate = __webpack_require__(207);
+	var _validate = __webpack_require__(205);
 
 	var _validate2 = _interopRequireDefault(_validate);
 
@@ -20705,15 +20705,6 @@
 	      var schema = _props.schema;
 	      var uiSchema = _props.uiSchema;
 	      var safeRenderCompletion = _props.safeRenderCompletion;
-	      var id = _props.id;
-	      var className = _props.className;
-	      var name = _props.name;
-	      var method = _props.method;
-	      var target = _props.target;
-	      var action = _props.action;
-	      var autocomplete = _props.autocomplete;
-	      var enctype = _props.enctype;
-	      var acceptcharset = _props.acceptcharset;
 	      var _state2 = this.state;
 	      var formData = _state2.formData;
 	      var errorSchema = _state2.errorSchema;
@@ -20721,19 +20712,9 @@
 
 	      var registry = this.getRegistry();
 	      var _SchemaField = registry.fields.SchemaField;
-
 	      return _react2.default.createElement(
 	        "form",
-	        { className: className ? className : "rjsf",
-	          id: id,
-	          name: name,
-	          method: method,
-	          target: target,
-	          action: action,
-	          autoComplete: autocomplete,
-	          encType: enctype,
-	          acceptCharset: acceptcharset,
-	          onSubmit: this.onSubmit },
+	        { className: "rjsf", onSubmit: this.onSubmit },
 	        this.renderErrors(),
 	        _react2.default.createElement(_SchemaField, {
 	          schema: schema,
@@ -20778,15 +20759,6 @@
 	    onChange: _react.PropTypes.func,
 	    onError: _react.PropTypes.func,
 	    onSubmit: _react.PropTypes.func,
-	    id: _react.PropTypes.string,
-	    className: _react.PropTypes.string,
-	    name: _react.PropTypes.string,
-	    method: _react.PropTypes.string,
-	    target: _react.PropTypes.string,
-	    action: _react.PropTypes.string,
-	    autocomplete: _react.PropTypes.string,
-	    enctype: _react.PropTypes.string,
-	    acceptcharset: _react.PropTypes.string,
 	    liveValidate: _react.PropTypes.bool,
 	    safeRenderCompletion: _react.PropTypes.bool
 	  };
@@ -20813,27 +20785,27 @@
 
 	var _utils = __webpack_require__(171);
 
-	var _ArrayField = __webpack_require__(199);
+	var _ArrayField = __webpack_require__(197);
 
 	var _ArrayField2 = _interopRequireDefault(_ArrayField);
 
-	var _BooleanField = __webpack_require__(200);
+	var _BooleanField = __webpack_require__(198);
 
 	var _BooleanField2 = _interopRequireDefault(_BooleanField);
 
-	var _NumberField = __webpack_require__(202);
+	var _NumberField = __webpack_require__(200);
 
 	var _NumberField2 = _interopRequireDefault(_NumberField);
 
-	var _ObjectField = __webpack_require__(204);
+	var _ObjectField = __webpack_require__(202);
 
 	var _ObjectField2 = _interopRequireDefault(_ObjectField);
 
-	var _StringField = __webpack_require__(203);
+	var _StringField = __webpack_require__(201);
 
 	var _StringField2 = _interopRequireDefault(_StringField);
 
-	var _UnsupportedField = __webpack_require__(205);
+	var _UnsupportedField = __webpack_require__(203);
 
 	var _UnsupportedField2 = _interopRequireDefault(_UnsupportedField);
 
@@ -20868,24 +20840,6 @@
 	    "label",
 	    { className: "control-label", htmlFor: id },
 	    required ? label + REQUIRED_FIELD_SYMBOL : label
-	  );
-	}
-
-	function renderHelp(help) {
-	  if (!help) {
-	    return null;
-	  }
-	  if (typeof help === "string") {
-	    return _react2.default.createElement(
-	      "p",
-	      { className: "help-block" },
-	      help
-	    );
-	  }
-	  return _react2.default.createElement(
-	    "div",
-	    { className: "help-block" },
-	    help
 	  );
 	}
 
@@ -20934,7 +20888,11 @@
 	    displayLabel && label ? getLabel(label, required, id) : null,
 	    children,
 	    isError ? _react2.default.createElement(ErrorList, { errors: errors }) : _react2.default.createElement("div", null),
-	    renderHelp(help)
+	    help ? _react2.default.createElement(
+	      "p",
+	      { className: "help-block" },
+	      help
+	    ) : null
 	  );
 	}
 
@@ -20981,7 +20939,7 @@
 
 	  var displayLabel = true;
 	  if (schema.type === "array") {
-	    displayLabel = (0, _utils.isMultiSelect)(schema) || (0, _utils.isFilesArray)(schema, uiSchema);
+	    displayLabel = (0, _utils.isMultiSelect)(schema);
 	  }
 	  if (schema.type === "object") {
 	    displayLabel = false;
@@ -21059,7 +21017,6 @@
 	exports.asNumber = asNumber;
 	exports.orderProperties = orderProperties;
 	exports.isMultiSelect = isMultiSelect;
-	exports.isFilesArray = isFilesArray;
 	exports.isFixedItems = isFixedItems;
 	exports.allowAdditionalItems = allowAdditionalItems;
 	exports.optionsList = optionsList;
@@ -21070,7 +21027,6 @@
 	exports.toDateString = toDateString;
 	exports.pad = pad;
 	exports.setState = setState;
-	exports.dataURItoBlob = dataURItoBlob;
 
 	__webpack_require__(173);
 
@@ -21146,14 +21102,6 @@
 
 	var _ColorWidget2 = _interopRequireDefault(_ColorWidget);
 
-	var _FileWidget = __webpack_require__(197);
-
-	var _FileWidget2 = _interopRequireDefault(_FileWidget);
-
-	var _CheckboxesWidget = __webpack_require__(198);
-
-	var _CheckboxesWidget2 = _interopRequireDefault(_CheckboxesWidget);
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
@@ -21174,8 +21122,7 @@
 	    datetime: _DateTimeWidget2.default,
 	    "alt-date": _AltDateWidget2.default,
 	    "alt-datetime": _AltDateTimeWidget2.default,
-	    color: _ColorWidget2.default,
-	    file: _FileWidget2.default
+	    color: _ColorWidget2.default
 	  },
 	  number: {
 	    updown: _UpDownWidget2.default,
@@ -21186,9 +21133,6 @@
 	    updown: _UpDownWidget2.default,
 	    range: _RangeWidget2.default,
 	    hidden: _HiddenWidget2.default
-	  },
-	  array: {
-	    checkboxes: _CheckboxesWidget2.default
 	  }
 	};
 
@@ -21199,8 +21143,7 @@
 	  "hostname": _TextWidget2.default,
 	  "ipv4": _TextWidget2.default,
 	  "ipv6": _TextWidget2.default,
-	  "uri": _URLWidget2.default,
-	  "data-url": _FileWidget2.default
+	  "uri": _URLWidget2.default
 	};
 
 	function getDefaultRegistry() {
@@ -21365,10 +21308,6 @@
 	  return Array.isArray(schema.items.enum) && schema.uniqueItems;
 	}
 
-	function isFilesArray(schema, uiSchema) {
-	  return schema.items.type === "string" && schema.items.format === "data-url" || uiSchema["ui:widget"] === "files";
-	}
-
 	function isFixedItems(schema) {
 	  return Array.isArray(schema.items) && schema.items.length > 0 && schema.items.every(function (item) {
 	    return isObject(item);
@@ -21505,39 +21444,6 @@
 	    instance.setState(state);
 	    setImmediate(callback);
 	  }
-	}
-
-	function dataURItoBlob(dataURI) {
-	  // Split metadata from data
-	  var splitted = dataURI.split(",");
-	  // Split params
-	  var params = splitted[0].split(";");
-	  // Get mime-type from params
-	  var type = params[0].replace("data:", "");
-	  // Filter the name property from params
-	  var properties = params.filter(function (param) {
-	    return param.split("=")[0] === "name";
-	  });
-	  // Look for the name and use unknown if no name property.
-	  var name = void 0;
-	  if (properties.length !== 1) {
-	    name = "unknown";
-	  } else {
-	    // Because we filtered out the other property,
-	    // we only have the name case here.
-	    name = properties[0].split("=")[1];
-	  }
-
-	  // Built the Uint8Array Blob parameter from the base64 string.
-	  var binary = atob(splitted[1]);
-	  var array = [];
-	  for (var i = 0; i < binary.length; i++) {
-	    array.push(binary.charCodeAt(i));
-	  }
-	  // Create the blob object
-	  var blob = new window.Blob([new Uint8Array(array)], { type: type });
-
-	  return { blob: blob, name: name };
 	}
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(172).setImmediate))
 
@@ -23794,7 +23700,7 @@
 	if (process.env.NODE_ENV !== "production") {
 	  DescriptionField.propTypes = {
 	    id: _react.PropTypes.string,
-	    description: _react.PropTypes.oneOfType([_react.PropTypes.string, _react.PropTypes.element])
+	    description: _react.PropTypes.string
 	  };
 	}
 
@@ -24768,299 +24674,9 @@
 
 	var _utils = __webpack_require__(171);
 
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	function addNameToDataURL(dataURL, name) {
-	  return dataURL.replace(";base64", ";name=" + name + ";base64");
-	}
-
-	function processFile(file) {
-	  var name = file.name;
-	  var size = file.size;
-	  var type = file.type;
-
-	  return new Promise(function (resolve, reject) {
-	    var reader = new window.FileReader();
-	    reader.onload = function (event) {
-	      resolve({
-	        dataURL: addNameToDataURL(event.target.result, name),
-	        name: name,
-	        size: size,
-	        type: type
-	      });
-	    };
-	    reader.readAsDataURL(file);
-	  });
-	}
-
-	function processFiles(files) {
-	  return Promise.all([].map.call(files, processFile));
-	}
-
-	function FilesInfo(props) {
-	  var filesInfo = props.filesInfo;
-
-	  if (filesInfo.length === 0) {
-	    return null;
-	  }
-	  return _react2.default.createElement(
-	    "ul",
-	    { className: "file-info" },
-	    filesInfo.map(function (fileInfo, key) {
-	      var name = fileInfo.name;
-	      var size = fileInfo.size;
-	      var type = fileInfo.type;
-
-	      return _react2.default.createElement(
-	        "li",
-	        { key: key },
-	        _react2.default.createElement(
-	          "strong",
-	          null,
-	          name
-	        ),
-	        " (",
-	        type,
-	        ", ",
-	        size,
-	        " bytes)"
-	      );
-	    })
-	  );
-	}
-
-	function extractFileInfo(dataURLs) {
-	  return dataURLs.filter(function (dataURL) {
-	    return typeof dataURL !== "undefined";
-	  }).map(function (dataURL) {
-	    var _dataURItoBlob = (0, _utils.dataURItoBlob)(dataURL);
-
-	    var blob = _dataURItoBlob.blob;
-	    var name = _dataURItoBlob.name;
-
-	    return {
-	      name: name,
-	      size: blob.size,
-	      type: blob.type
-	    };
-	  });
-	}
-
-	var FileWidget = function (_Component) {
-	  _inherits(FileWidget, _Component);
-
-	  function FileWidget(props) {
-	    _classCallCheck(this, FileWidget);
-
-	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(FileWidget).call(this, props));
-
-	    _this.defaultProps = {
-	      multiple: false
-	    };
-
-	    _this.onChange = function (event) {
-	      var _this$props = _this.props;
-	      var multiple = _this$props.multiple;
-	      var onChange = _this$props.onChange;
-
-	      processFiles(event.target.files).then(function (filesInfo) {
-	        var state = {
-	          values: filesInfo.map(function (fileInfo) {
-	            return fileInfo.dataURL;
-	          }),
-	          filesInfo: filesInfo
-	        };
-	        (0, _utils.setState)(_this, state, function () {
-	          if (multiple) {
-	            onChange(state.values);
-	          } else {
-	            onChange(state.values[0]);
-	          }
-	        });
-	      });
-	    };
-
-	    var value = props.value;
-
-	    var values = Array.isArray(value) ? value : [value];
-	    _this.state = { values: values, filesInfo: extractFileInfo(values) };
-	    return _this;
-	  }
-
-	  _createClass(FileWidget, [{
-	    key: "shouldComponentUpdate",
-	    value: function shouldComponentUpdate(nextProps, nextState) {
-	      return (0, _utils.shouldRender)(this, nextProps, nextState);
-	    }
-	  }, {
-	    key: "render",
-	    value: function render() {
-	      var _props = this.props;
-	      var multiple = _props.multiple;
-	      var id = _props.id;
-	      var readonly = _props.readonly;
-	      var disabled = _props.disabled;
-	      var filesInfo = this.state.filesInfo;
-
-	      return _react2.default.createElement(
-	        "div",
-	        null,
-	        _react2.default.createElement(
-	          "p",
-	          null,
-	          _react2.default.createElement("input", {
-	            id: id,
-	            type: "file",
-	            disabled: readonly || disabled,
-	            onChange: this.onChange,
-	            defaultValue: "",
-	            multiple: multiple })
-	        ),
-	        _react2.default.createElement(FilesInfo, { filesInfo: filesInfo })
-	      );
-	    }
-	  }]);
-
-	  return FileWidget;
-	}(_react.Component);
-
-	if (process.env.NODE_ENV !== "production") {
-	  FileWidget.propTypes = {
-	    multiple: _react.PropTypes.bool,
-	    value: _react.PropTypes.oneOfType([_react.PropTypes.string, _react.PropTypes.arrayOf(_react.PropTypes.string)])
-	  };
-	}
-
-	exports.default = FileWidget;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
-
-/***/ },
-/* 198 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function(process) {"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function selectValue(value, selected, all) {
-	  var at = all.indexOf(value);
-	  var updated = selected.slice(0, at).concat(value, selected.slice(at));
-	  // As inserting values at predefined index positions doesn't work with empty
-	  // arrays, we need to reorder the updated selection to match the initial order
-	  return updated.sort(function (a, b) {
-	    return all.indexOf(a) > all.indexOf(b);
-	  });
-	}
-
-	function deselectValue(value, selected) {
-	  return selected.filter(function (v) {
-	    return v !== value;
-	  });
-	}
-
-	function CheckboxesWidget(props) {
-	  var id = props.id;
-	  var disabled = props.disabled;
-	  var options = props.options;
-	  var value = props.value;
-	  var _onChange = props.onChange;
-
-	  return _react2.default.createElement(
-	    "div",
-	    { className: "checkboxes", id: id },
-	    options.map(function (option, index) {
-	      var checked = value.indexOf(option.value) !== -1;
-	      return _react2.default.createElement(
-	        "div",
-	        { key: index, className: "checkbox" },
-	        _react2.default.createElement(
-	          "label",
-	          null,
-	          _react2.default.createElement("input", { type: "checkbox",
-	            id: id + "_" + index,
-	            checked: checked,
-	            disabled: disabled,
-	            onChange: function onChange(event) {
-	              var all = options.map(function (_ref) {
-	                var value = _ref.value;
-	                return value;
-	              });
-	              if (event.target.checked) {
-	                _onChange(selectValue(option.value, value, all));
-	              } else {
-	                _onChange(deselectValue(option.value, value));
-	              }
-	            } }),
-	          _react2.default.createElement(
-	            "strong",
-	            null,
-	            option.label
-	          )
-	        )
-	      );
-	    })
-	  );
-	}
-
-	if (process.env.NODE_ENV !== "production") {
-	  CheckboxesWidget.propTypes = {
-	    schema: _react.PropTypes.object.isRequired,
-	    id: _react.PropTypes.string.isRequired,
-	    options: _react.PropTypes.array.isRequired,
-	    placeholder: _react.PropTypes.string,
-	    value: _react.PropTypes.any,
-	    required: _react.PropTypes.bool,
-	    multiple: _react.PropTypes.bool,
-	    onChange: _react.PropTypes.func
-	  };
-	}
-
-	exports.default = CheckboxesWidget;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
-
-/***/ },
-/* 199 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function(process) {"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _utils = __webpack_require__(171);
-
 	var _SelectWidget = __webpack_require__(186);
 
 	var _SelectWidget2 = _interopRequireDefault(_SelectWidget);
-
-	var _FileWidget = __webpack_require__(197);
-
-	var _FileWidget2 = _interopRequireDefault(_FileWidget);
-
-	var _CheckboxesWidget = __webpack_require__(198);
-
-	var _CheckboxesWidget2 = _interopRequireDefault(_CheckboxesWidget);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -25188,13 +24804,8 @@
 	  }, {
 	    key: "render",
 	    value: function render() {
-	      var _props = this.props;
-	      var schema = _props.schema;
-	      var uiSchema = _props.uiSchema;
+	      var schema = this.props.schema;
 
-	      if ((0, _utils.isFilesArray)(schema, uiSchema)) {
-	        return this.renderFiles();
-	      }
 	      if ((0, _utils.isFixedItems)(schema)) {
 	        return this.renderFixedArray();
 	      }
@@ -25208,15 +24819,15 @@
 	    value: function renderNormalArray() {
 	      var _this3 = this;
 
-	      var _props2 = this.props;
-	      var schema = _props2.schema;
-	      var uiSchema = _props2.uiSchema;
-	      var errorSchema = _props2.errorSchema;
-	      var idSchema = _props2.idSchema;
-	      var name = _props2.name;
-	      var required = _props2.required;
-	      var disabled = _props2.disabled;
-	      var readonly = _props2.readonly;
+	      var _props = this.props;
+	      var schema = _props.schema;
+	      var uiSchema = _props.uiSchema;
+	      var errorSchema = _props.errorSchema;
+	      var idSchema = _props.idSchema;
+	      var name = _props.name;
+	      var required = _props.required;
+	      var disabled = _props.disabled;
+	      var readonly = _props.readonly;
 
 	      var title = schema.title || name;
 	      var items = this.state.items;
@@ -25265,51 +24876,23 @@
 	  }, {
 	    key: "renderMultiSelect",
 	    value: function renderMultiSelect() {
-	      var _props3 = this.props;
-	      var schema = _props3.schema;
-	      var idSchema = _props3.idSchema;
-	      var uiSchema = _props3.uiSchema;
-	      var name = _props3.name;
-	      var disabled = _props3.disabled;
-	      var readonly = _props3.readonly;
+	      var _props2 = this.props;
+	      var schema = _props2.schema;
+	      var idSchema = _props2.idSchema;
+	      var name = _props2.name;
+	      var disabled = _props2.disabled;
+	      var readonly = _props2.readonly;
 
 	      var title = schema.title || name;
 	      var items = this.state.items;
 	      var definitions = this.props.registry.definitions;
 
 	      var itemsSchema = (0, _utils.retrieveSchema)(schema.items, definitions);
-
-	      var multipleCheckboxes = uiSchema["ui:widget"] === "checkboxes";
-	      var Widget = multipleCheckboxes ? _CheckboxesWidget2.default : _SelectWidget2.default;
-	      return _react2.default.createElement(Widget, {
+	      return _react2.default.createElement(_SelectWidget2.default, {
 	        id: idSchema && idSchema.id,
 	        multiple: true,
 	        onChange: this.onSelectChange,
 	        options: (0, _utils.optionsList)(itemsSchema),
-	        schema: schema,
-	        placeholder: title,
-	        value: items,
-	        disabled: disabled,
-	        readonly: readonly
-	      });
-	    }
-	  }, {
-	    key: "renderFiles",
-	    value: function renderFiles() {
-	      var _props4 = this.props;
-	      var schema = _props4.schema;
-	      var idSchema = _props4.idSchema;
-	      var name = _props4.name;
-	      var disabled = _props4.disabled;
-	      var readonly = _props4.readonly;
-
-	      var title = schema.title || name;
-	      var items = this.state.items;
-
-	      return _react2.default.createElement(_FileWidget2.default, {
-	        id: idSchema && idSchema.id,
-	        multiple: true,
-	        onChange: this.onSelectChange,
 	        schema: schema,
 	        title: title,
 	        value: items,
@@ -25322,15 +24905,15 @@
 	    value: function renderFixedArray() {
 	      var _this4 = this;
 
-	      var _props5 = this.props;
-	      var schema = _props5.schema;
-	      var uiSchema = _props5.uiSchema;
-	      var errorSchema = _props5.errorSchema;
-	      var idSchema = _props5.idSchema;
-	      var name = _props5.name;
-	      var required = _props5.required;
-	      var disabled = _props5.disabled;
-	      var readonly = _props5.readonly;
+	      var _props3 = this.props;
+	      var schema = _props3.schema;
+	      var uiSchema = _props3.uiSchema;
+	      var errorSchema = _props3.errorSchema;
+	      var idSchema = _props3.idSchema;
+	      var name = _props3.name;
+	      var required = _props3.required;
+	      var disabled = _props3.disabled;
+	      var readonly = _props3.readonly;
 
 	      var title = schema.title || name;
 	      var items = this.state.items;
@@ -25402,9 +24985,9 @@
 	      var itemIdSchema = _ref3.itemIdSchema;
 	      var itemErrorSchema = _ref3.itemErrorSchema;
 	      var SchemaField = this.props.registry.fields.SchemaField;
-	      var _props6 = this.props;
-	      var disabled = _props6.disabled;
-	      var readonly = _props6.readonly;
+	      var _props4 = this.props;
+	      var disabled = _props4.disabled;
+	      var readonly = _props4.readonly;
 
 	      return _react2.default.createElement(
 	        "div",
@@ -25504,7 +25087,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 200 */
+/* 198 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {"use strict";
@@ -25521,7 +25104,7 @@
 
 	var _utils = __webpack_require__(171);
 
-	var _CheckboxWidget = __webpack_require__(201);
+	var _CheckboxWidget = __webpack_require__(199);
 
 	var _CheckboxWidget2 = _interopRequireDefault(_CheckboxWidget);
 
@@ -25597,7 +25180,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 201 */
+/* 199 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {"use strict";
@@ -25660,7 +25243,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 202 */
+/* 200 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {"use strict";
@@ -25677,7 +25260,7 @@
 
 	var _utils = __webpack_require__(171);
 
-	var _StringField = __webpack_require__(203);
+	var _StringField = __webpack_require__(201);
 
 	var _StringField2 = _interopRequireDefault(_StringField);
 
@@ -25708,7 +25291,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 203 */
+/* 201 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {"use strict";
@@ -25804,7 +25387,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 204 */
+/* 202 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {"use strict";
@@ -26001,7 +25584,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 205 */
+/* 203 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -26031,7 +25614,7 @@
 	}
 
 /***/ },
-/* 206 */
+/* 204 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -26077,7 +25660,7 @@
 	}
 
 /***/ },
-/* 207 */
+/* 205 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -26091,7 +25674,7 @@
 	exports.toErrorList = toErrorList;
 	exports.default = validateFormData;
 
-	var _jsonschema = __webpack_require__(208);
+	var _jsonschema = __webpack_require__(206);
 
 	var _utils = __webpack_require__(171);
 
@@ -26259,16 +25842,16 @@
 	}
 
 /***/ },
-/* 208 */
+/* 206 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var Validator = module.exports.Validator = __webpack_require__(209);
+	var Validator = module.exports.Validator = __webpack_require__(207);
 
-	module.exports.ValidatorResult = __webpack_require__(217).ValidatorResult;
-	module.exports.ValidationError = __webpack_require__(217).ValidationError;
-	module.exports.SchemaError = __webpack_require__(217).SchemaError;
+	module.exports.ValidatorResult = __webpack_require__(215).ValidatorResult;
+	module.exports.ValidationError = __webpack_require__(215).ValidationError;
+	module.exports.SchemaError = __webpack_require__(215).SchemaError;
 
 	module.exports.validate = function (instance, schema, options) {
 	  var v = new Validator();
@@ -26277,15 +25860,15 @@
 
 
 /***/ },
-/* 209 */
+/* 207 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var urilib = __webpack_require__(210);
+	var urilib = __webpack_require__(208);
 
-	var attribute = __webpack_require__(216);
-	var helpers = __webpack_require__(217);
+	var attribute = __webpack_require__(214);
+	var helpers = __webpack_require__(215);
 	var ValidatorResult = helpers.ValidatorResult;
 	var SchemaError = helpers.SchemaError;
 	var SchemaContext = helpers.SchemaContext;
@@ -26603,7 +26186,7 @@
 
 
 /***/ },
-/* 210 */
+/* 208 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// Copyright Joyent, Inc. and other Node contributors.
@@ -26627,7 +26210,7 @@
 	// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
 	// USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-	var punycode = __webpack_require__(211);
+	var punycode = __webpack_require__(209);
 
 	exports.parse = urlParse;
 	exports.resolve = urlResolve;
@@ -26699,7 +26282,7 @@
 	      'gopher:': true,
 	      'file:': true
 	    },
-	    querystring = __webpack_require__(213);
+	    querystring = __webpack_require__(211);
 
 	function urlParse(url, parseQueryString, slashesDenoteHost) {
 	  if (url && isObject(url) && url instanceof Url) return url;
@@ -27316,7 +26899,7 @@
 
 
 /***/ },
-/* 211 */
+/* 209 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(module, global) {/*! https://mths.be/punycode v1.3.2 by @mathias */
@@ -27848,10 +27431,10 @@
 
 	}(this));
 
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(212)(module), (function() { return this; }())))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(210)(module), (function() { return this; }())))
 
 /***/ },
-/* 212 */
+/* 210 */
 /***/ function(module, exports) {
 
 	module.exports = function(module) {
@@ -27867,17 +27450,17 @@
 
 
 /***/ },
-/* 213 */
+/* 211 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	exports.decode = exports.parse = __webpack_require__(214);
-	exports.encode = exports.stringify = __webpack_require__(215);
+	exports.decode = exports.parse = __webpack_require__(212);
+	exports.encode = exports.stringify = __webpack_require__(213);
 
 
 /***/ },
-/* 214 */
+/* 212 */
 /***/ function(module, exports) {
 
 	// Copyright Joyent, Inc. and other Node contributors.
@@ -27963,7 +27546,7 @@
 
 
 /***/ },
-/* 215 */
+/* 213 */
 /***/ function(module, exports) {
 
 	// Copyright Joyent, Inc. and other Node contributors.
@@ -28033,12 +27616,12 @@
 
 
 /***/ },
-/* 216 */
+/* 214 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var helpers = __webpack_require__(217);
+	var helpers = __webpack_require__(215);
 
 	/** @type ValidatorResult */
 	var ValidatorResult = helpers.ValidatorResult;
@@ -28824,12 +28407,12 @@
 
 
 /***/ },
-/* 217 */
+/* 215 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var uri = __webpack_require__(210);
+	var uri = __webpack_require__(208);
 
 	var ValidationError = exports.ValidationError = function ValidationError (message, instance, schema, propertyPath, name, argument) {
 	  if (propertyPath) {
@@ -29109,7 +28692,7 @@
 
 
 /***/ },
-/* 218 */
+/* 216 */
 /***/ function(module, exports) {
 
 	var schema = {
@@ -30039,7 +29622,7 @@
 	module.exports = schema;
 
 /***/ },
-/* 219 */
+/* 217 */
 /***/ function(module, exports) {
 
 	var uiSchema = {
@@ -30131,7 +29714,7 @@
 	module.exports = uiSchema;
 
 /***/ },
-/* 220 */
+/* 218 */
 /***/ function(module, exports) {
 
 	var dummyData = {
