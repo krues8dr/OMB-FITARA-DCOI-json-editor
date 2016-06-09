@@ -88,7 +88,7 @@
 	// walk(DCOIschema, formUiSchema, initialFormData);
 
 	// Covering browsers without Object.assign support (IE 9-11)
-	__webpack_require__(218);
+	// require('./js/polyfill.js');
 
 	var App = React.createClass({
 	    displayName: 'App',
@@ -196,8 +196,8 @@
 	                    Form,
 	                    {
 	                        schema: schema,
-	                        uiSchema: uiSchema,
-	                        formData: formData,
+	                        // uiSchema: uiSchema,
+	                        // formData: formData,
 	                        liveValidate: liveValidate,
 	                        onChange: this.onFormDataChange,
 	                        onSubmit: this.generateJson,
@@ -29762,34 +29762,6 @@
 	};
 
 	module.exports = dummyData;
-
-/***/ },
-/* 218 */
-/***/ function(module, exports) {
-
-	if (typeof Object.assign != 'function') {
-	    (function () {
-	        Object.assign = function (target) {
-	            'use strict';
-	            if (target === undefined || target === null) {
-	                throw new TypeError('Cannot convert undefined or null to object');
-	            }
-
-	            var output = Object(target);
-	            for (var index = 1; index < arguments.length; index++) {
-	                var source = arguments[index];
-	                if (source !== undefined && source !== null) {
-	                    for (var nextKey in source) {
-	                        if (Object.prototype.hasOwnProperty.call(source, nextKey)) {
-	                            output[nextKey] = source[nextKey];
-	                        }
-	                    }
-	                }
-	            }
-	            return output;
-	        };
-	    })();
-	}
 
 /***/ }
 /******/ ]);
