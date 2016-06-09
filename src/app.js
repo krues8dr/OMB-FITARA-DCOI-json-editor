@@ -41,6 +41,8 @@ var initialFormData = {};
 
 walk(DCOIschema, formUiSchema, initialFormData);
 
+console.log(initialFormData);
+
 // Covering browsers without Object.assign support (IE 9-11)
 // require('./js/polyfill.js');
 
@@ -151,7 +153,7 @@ var App = React.createClass({
                     {
                         schema: schema,
                         uiSchema: uiSchema,
-                        // formData: formData,
+                        formData: formData,
                         liveValidate: liveValidate,
                         onChange: this.onFormDataChange,
                         onSubmit: this.generateJson,
