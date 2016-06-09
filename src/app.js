@@ -39,7 +39,7 @@ function walk(schema, uiSchema, formData) {
 
 var initialFormData = {};
 
-// walk(DCOIschema, formUiSchema, initialFormData);
+walk(DCOIschema, formUiSchema, initialFormData);
 
 // Covering browsers without Object.assign support (IE 9-11)
 // require('./js/polyfill.js');
@@ -150,7 +150,7 @@ var App = React.createClass({
                     Form,
                     {
                         schema: schema,
-                        // uiSchema: uiSchema,
+                        uiSchema: uiSchema,
                         // formData: formData,
                         liveValidate: liveValidate,
                         onChange: this.onFormDataChange,
