@@ -60,12 +60,12 @@
 	function walk(schema, uiSchema, formData) {
 	    if (schema.hasOwnProperty('properties')) {
 	        for (var key in schema.properties) {
-	            if (schema.properties.hasOwnProperty(key)){
+	            if (schema.properties.hasOwnProperty(key)) {
 	                uiSchema[key] = uiSchema[key] || {};
 	                if (schema.properties[key].hasOwnProperty('properties')) {
 	                    formData[key] = formData[key] || {};
 	                } else {
-	                    if (schema.properties[key].hasOwnProperty('minimum') && schema.properties[key].hasOwnProperty('maximum')){
+	                    if (schema.properties[key].hasOwnProperty('minimum') && schema.properties[key].hasOwnProperty('maximum')) {
 	                        if (schema.properties[key].minimum == schema.properties[key].maximum) {
 	                            formData[key] = schema.properties[key].minimum;
 	                        }
@@ -86,9 +86,6 @@
 	var initialFormData = {};
 
 	walk(DCOIschema, formUiSchema, initialFormData);
-
-	console.log(formUiSchema);
-	console.log(initialFormData);
 
 	// Covering browsers without Object.assign support (IE 9-11)
 	__webpack_require__(218);
@@ -122,12 +119,12 @@
 	        }
 	    },
 
-	    loadMyData: function() {
+	    loadMyData: function () {
 	        var data = JSON.parse(document.getElementById("json-input").value);
 	        this.setState({formData: data, inputForm: ''});
 	    },
 
-	    showLoadMyDataForm: function() {
+	    showLoadMyDataForm: function () {
 	        var myDataForm = React.createElement("div",
 	            {className: "form-group field field-object"},
 	            React.createElement("h4",
@@ -152,19 +149,17 @@
 	        this.setState({inputForm: myDataForm});
 	    },
 
-	    onFormDataChange: function(obj){
-	        this.setState({formData: obj.formData, output:''})
+	    onFormDataChange: function (obj) {
+	        this.setState({formData: obj.formData, output: ''})
 	    },
 
 	    render: function render() {
-	        var {
-	            schema,
-	            uiSchema,
-	            formData,
-	            liveValidate,
-	            output,
-	            inputForm
-	        } = this.state;
+	        var schema = this.state.schema;
+	        var uiSchema = this.state.uiSchema;
+	        var formData = this.state.formData;
+	        var liveValidate = this.state.liveValidate;
+	        var output = this.state.output;
+	        var inputForm = this.state.inputForm;
 
 	        return React.createElement(
 	            'div',
@@ -228,7 +223,7 @@
 	), document.getElementById('app'));
 
 	(0, ReactDOM.render)(
-	    React.createElement("em", {}, "version "+version)
+	    React.createElement("em", {}, "version " + version)
 	    , document.getElementById("version"));
 
 
