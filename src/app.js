@@ -155,7 +155,7 @@ var App = React.createClass({
                     {
                         schema: schema,
                         uiSchema: uiSchema,
-                        formData: formData,
+                        // formData: formData,
                         liveValidate: liveValidate,
                         onChange: this.onFormDataChange,
                         onSubmit: this.generateJson,
