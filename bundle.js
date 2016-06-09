@@ -48,9 +48,9 @@
 
 	var ReactDOM = __webpack_require__(38);
 	var JSONSchemaForm = __webpack_require__(168);
-	var DCOIschema = __webpack_require__(216);
-	var formUiSchema = __webpack_require__(217);
-	var dummyData = __webpack_require__(218);
+	var DCOIschema = __webpack_require__(215);
+	var formUiSchema = __webpack_require__(216);
+	var dummyData = __webpack_require__(217);
 
 	var Form = JSONSchemaForm.default;
 
@@ -20546,17 +20546,13 @@
 
 	var _TitleField3 = _interopRequireDefault(_TitleField2);
 
-	var _DescriptionField2 = __webpack_require__(180);
-
-	var _DescriptionField3 = _interopRequireDefault(_DescriptionField2);
-
-	var _ErrorList = __webpack_require__(204);
+	var _ErrorList = __webpack_require__(203);
 
 	var _ErrorList2 = _interopRequireDefault(_ErrorList);
 
 	var _utils = __webpack_require__(171);
 
-	var _validate = __webpack_require__(205);
+	var _validate = __webpack_require__(204);
 
 	var _validate2 = _interopRequireDefault(_validate);
 
@@ -20684,12 +20680,9 @@
 	      // the "fields" registry one.
 	      var _SchemaField = this.props.SchemaField || _SchemaField3.default;
 	      var _TitleField = this.props.TitleField || _TitleField3.default;
-	      var _DescriptionField = this.props.DescriptionField || _DescriptionField3.default;
-
 	      var fields = Object.assign({
 	        SchemaField: _SchemaField,
-	        TitleField: _TitleField,
-	        DescriptionField: _DescriptionField
+	        TitleField: _TitleField
 	      }, this.props.fields);
 	      return {
 	        fields: fields,
@@ -20785,27 +20778,27 @@
 
 	var _utils = __webpack_require__(171);
 
-	var _ArrayField = __webpack_require__(197);
+	var _ArrayField = __webpack_require__(196);
 
 	var _ArrayField2 = _interopRequireDefault(_ArrayField);
 
-	var _BooleanField = __webpack_require__(198);
+	var _BooleanField = __webpack_require__(197);
 
 	var _BooleanField2 = _interopRequireDefault(_BooleanField);
 
-	var _NumberField = __webpack_require__(200);
+	var _NumberField = __webpack_require__(199);
 
 	var _NumberField2 = _interopRequireDefault(_NumberField);
 
-	var _ObjectField = __webpack_require__(202);
+	var _ObjectField = __webpack_require__(201);
 
 	var _ObjectField2 = _interopRequireDefault(_ObjectField);
 
-	var _StringField = __webpack_require__(201);
+	var _StringField = __webpack_require__(200);
 
 	var _StringField2 = _interopRequireDefault(_StringField);
 
-	var _UnsupportedField = __webpack_require__(203);
+	var _UnsupportedField = __webpack_require__(202);
 
 	var _UnsupportedField2 = _interopRequireDefault(_UnsupportedField);
 
@@ -20903,7 +20896,7 @@
 	    classNames: _react2.default.PropTypes.string,
 	    label: _react.PropTypes.string,
 	    hidden: _react.PropTypes.bool,
-	    help: _react.PropTypes.oneOfType([_react.PropTypes.string, _react.PropTypes.element]),
+	    help: _react.PropTypes.string,
 	    required: _react.PropTypes.bool,
 	    displayLabel: _react.PropTypes.bool,
 	    children: _react2.default.PropTypes.node.isRequired
@@ -21038,67 +21031,63 @@
 
 	var _TitleField2 = _interopRequireDefault(_TitleField);
 
-	var _DescriptionField = __webpack_require__(180);
-
-	var _DescriptionField2 = _interopRequireDefault(_DescriptionField);
-
-	var _PasswordWidget = __webpack_require__(181);
+	var _PasswordWidget = __webpack_require__(180);
 
 	var _PasswordWidget2 = _interopRequireDefault(_PasswordWidget);
 
-	var _RadioWidget = __webpack_require__(183);
+	var _RadioWidget = __webpack_require__(182);
 
 	var _RadioWidget2 = _interopRequireDefault(_RadioWidget);
 
-	var _UpDownWidget = __webpack_require__(184);
+	var _UpDownWidget = __webpack_require__(183);
 
 	var _UpDownWidget2 = _interopRequireDefault(_UpDownWidget);
 
-	var _RangeWidget = __webpack_require__(185);
+	var _RangeWidget = __webpack_require__(184);
 
 	var _RangeWidget2 = _interopRequireDefault(_RangeWidget);
 
-	var _SelectWidget = __webpack_require__(186);
+	var _SelectWidget = __webpack_require__(185);
 
 	var _SelectWidget2 = _interopRequireDefault(_SelectWidget);
 
-	var _TextWidget = __webpack_require__(187);
+	var _TextWidget = __webpack_require__(186);
 
 	var _TextWidget2 = _interopRequireDefault(_TextWidget);
 
-	var _DateWidget = __webpack_require__(188);
+	var _DateWidget = __webpack_require__(187);
 
 	var _DateWidget2 = _interopRequireDefault(_DateWidget);
 
-	var _DateTimeWidget = __webpack_require__(189);
+	var _DateTimeWidget = __webpack_require__(188);
 
 	var _DateTimeWidget2 = _interopRequireDefault(_DateTimeWidget);
 
-	var _AltDateWidget = __webpack_require__(190);
+	var _AltDateWidget = __webpack_require__(189);
 
 	var _AltDateWidget2 = _interopRequireDefault(_AltDateWidget);
 
-	var _AltDateTimeWidget = __webpack_require__(191);
+	var _AltDateTimeWidget = __webpack_require__(190);
 
 	var _AltDateTimeWidget2 = _interopRequireDefault(_AltDateTimeWidget);
 
-	var _EmailWidget = __webpack_require__(192);
+	var _EmailWidget = __webpack_require__(191);
 
 	var _EmailWidget2 = _interopRequireDefault(_EmailWidget);
 
-	var _URLWidget = __webpack_require__(193);
+	var _URLWidget = __webpack_require__(192);
 
 	var _URLWidget2 = _interopRequireDefault(_URLWidget);
 
-	var _TextareaWidget = __webpack_require__(194);
+	var _TextareaWidget = __webpack_require__(193);
 
 	var _TextareaWidget2 = _interopRequireDefault(_TextareaWidget);
 
-	var _HiddenWidget = __webpack_require__(195);
+	var _HiddenWidget = __webpack_require__(194);
 
 	var _HiddenWidget2 = _interopRequireDefault(_HiddenWidget);
 
-	var _ColorWidget = __webpack_require__(196);
+	var _ColorWidget = __webpack_require__(195);
 
 	var _ColorWidget2 = _interopRequireDefault(_ColorWidget);
 
@@ -21156,8 +21145,7 @@
 	      // Investigation hint: getDefaultRegistry is called from within
 	      // SchemaField itself.
 	      SchemaField: __webpack_require__(170).default,
-	      TitleField: _TitleField2.default,
-	      DescriptionField: _DescriptionField2.default
+	      TitleField: _TitleField2.default
 	    },
 	    widgets: {},
 	    definitions: {}
@@ -23680,50 +23668,13 @@
 	  value: true
 	});
 
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function DescriptionField(props) {
-	  var id = props.id;
-	  var description = props.description;
-
-	  return _react2.default.createElement(
-	    "div",
-	    { id: id, className: "field-description" },
-	    description
-	  );
-	}
-
-	if (process.env.NODE_ENV !== "production") {
-	  DescriptionField.propTypes = {
-	    id: _react.PropTypes.string,
-	    description: _react.PropTypes.string
-	  };
-	}
-
-	exports.default = DescriptionField;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
-
-/***/ },
-/* 181 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function(process) {"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 	var _react = __webpack_require__(1);
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _BaseInput = __webpack_require__(182);
+	var _BaseInput = __webpack_require__(181);
 
 	var _BaseInput2 = _interopRequireDefault(_BaseInput);
 
@@ -23743,7 +23694,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 182 */
+/* 181 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {"use strict";
@@ -23797,7 +23748,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 183 */
+/* 182 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {"use strict";
@@ -23865,7 +23816,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 184 */
+/* 183 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {"use strict";
@@ -23880,7 +23831,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _BaseInput = __webpack_require__(182);
+	var _BaseInput = __webpack_require__(181);
 
 	var _BaseInput2 = _interopRequireDefault(_BaseInput);
 
@@ -23914,7 +23865,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 185 */
+/* 184 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {"use strict";
@@ -23929,7 +23880,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _BaseInput = __webpack_require__(182);
+	var _BaseInput = __webpack_require__(181);
 
 	var _BaseInput2 = _interopRequireDefault(_BaseInput);
 
@@ -23977,7 +23928,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 186 */
+/* 185 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {"use strict";
@@ -24074,7 +24025,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 187 */
+/* 186 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {"use strict";
@@ -24087,7 +24038,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _BaseInput = __webpack_require__(182);
+	var _BaseInput = __webpack_require__(181);
 
 	var _BaseInput2 = _interopRequireDefault(_BaseInput);
 
@@ -24107,7 +24058,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 188 */
+/* 187 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {"use strict";
@@ -24122,7 +24073,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _BaseInput = __webpack_require__(182);
+	var _BaseInput = __webpack_require__(181);
 
 	var _BaseInput2 = _interopRequireDefault(_BaseInput);
 
@@ -24142,7 +24093,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 189 */
+/* 188 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {"use strict";
@@ -24157,7 +24108,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _BaseInput = __webpack_require__(182);
+	var _BaseInput = __webpack_require__(181);
 
 	var _BaseInput2 = _interopRequireDefault(_BaseInput);
 
@@ -24197,7 +24148,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 190 */
+/* 189 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {"use strict";
@@ -24216,7 +24167,7 @@
 
 	var _utils = __webpack_require__(171);
 
-	var _SelectWidget = __webpack_require__(186);
+	var _SelectWidget = __webpack_require__(185);
 
 	var _SelectWidget2 = _interopRequireDefault(_SelectWidget);
 
@@ -24426,7 +24377,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 191 */
+/* 190 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {"use strict";
@@ -24441,7 +24392,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _AltDateWidget = __webpack_require__(190);
+	var _AltDateWidget = __webpack_require__(189);
 
 	var _AltDateWidget2 = _interopRequireDefault(_AltDateWidget);
 
@@ -24466,7 +24417,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 192 */
+/* 191 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {"use strict";
@@ -24481,7 +24432,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _BaseInput = __webpack_require__(182);
+	var _BaseInput = __webpack_require__(181);
 
 	var _BaseInput2 = _interopRequireDefault(_BaseInput);
 
@@ -24501,7 +24452,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 193 */
+/* 192 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {"use strict";
@@ -24516,7 +24467,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _BaseInput = __webpack_require__(182);
+	var _BaseInput = __webpack_require__(181);
 
 	var _BaseInput2 = _interopRequireDefault(_BaseInput);
 
@@ -24536,7 +24487,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 194 */
+/* 193 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {"use strict";
@@ -24589,7 +24540,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 195 */
+/* 194 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {"use strict";
@@ -24622,7 +24573,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 196 */
+/* 195 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {"use strict";
@@ -24637,7 +24588,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _BaseInput = __webpack_require__(182);
+	var _BaseInput = __webpack_require__(181);
 
 	var _BaseInput2 = _interopRequireDefault(_BaseInput);
 
@@ -24657,7 +24608,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 197 */
+/* 196 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {"use strict";
@@ -24674,7 +24625,7 @@
 
 	var _utils = __webpack_require__(171);
 
-	var _SelectWidget = __webpack_require__(186);
+	var _SelectWidget = __webpack_require__(185);
 
 	var _SelectWidget2 = _interopRequireDefault(_SelectWidget);
 
@@ -24697,18 +24648,6 @@
 	  }
 	  var id = idSchema.id + "__title";
 	  return _react2.default.createElement(TitleField, { id: id, title: title, required: required });
-	}
-
-	function ArrayFieldDescription(_ref2) {
-	  var DescriptionField = _ref2.DescriptionField;
-	  var idSchema = _ref2.idSchema;
-	  var description = _ref2.description;
-
-	  if (!description) {
-	    return null;
-	  }
-	  var id = idSchema.id + "__description";
-	  return _react2.default.createElement(DescriptionField, { id: id, description: description });
 	}
 
 	var ArrayField = function (_Component) {
@@ -24835,7 +24774,6 @@
 	      var definitions = _props$registry.definitions;
 	      var fields = _props$registry.fields;
 	      var TitleField = fields.TitleField;
-	      var DescriptionField = fields.DescriptionField;
 
 	      var itemsSchema = (0, _utils.retrieveSchema)(schema.items, definitions);
 
@@ -24848,10 +24786,11 @@
 	          idSchema: idSchema,
 	          title: title,
 	          required: required }),
-	        schema.description ? _react2.default.createElement(ArrayFieldDescription, {
-	          DescriptionField: DescriptionField,
-	          idSchema: idSchema,
-	          description: schema.description }) : null,
+	        schema.description ? _react2.default.createElement(
+	          "div",
+	          { className: "field-description" },
+	          schema.description
+	        ) : null,
 	        _react2.default.createElement(
 	          "div",
 	          { className: "row array-item-list" },
@@ -24975,15 +24914,15 @@
 	    }
 	  }, {
 	    key: "renderArrayFieldItem",
-	    value: function renderArrayFieldItem(_ref3) {
-	      var index = _ref3.index;
-	      var _ref3$removable = _ref3.removable;
-	      var removable = _ref3$removable === undefined ? true : _ref3$removable;
-	      var itemSchema = _ref3.itemSchema;
-	      var itemData = _ref3.itemData;
-	      var itemUiSchema = _ref3.itemUiSchema;
-	      var itemIdSchema = _ref3.itemIdSchema;
-	      var itemErrorSchema = _ref3.itemErrorSchema;
+	    value: function renderArrayFieldItem(_ref2) {
+	      var index = _ref2.index;
+	      var _ref2$removable = _ref2.removable;
+	      var removable = _ref2$removable === undefined ? true : _ref2$removable;
+	      var itemSchema = _ref2.itemSchema;
+	      var itemData = _ref2.itemData;
+	      var itemUiSchema = _ref2.itemUiSchema;
+	      var itemIdSchema = _ref2.itemIdSchema;
+	      var itemErrorSchema = _ref2.itemErrorSchema;
 	      var SchemaField = this.props.registry.fields.SchemaField;
 	      var _props4 = this.props;
 	      var disabled = _props4.disabled;
@@ -25043,9 +24982,9 @@
 	};
 
 
-	function AddButton(_ref4) {
-	  var onClick = _ref4.onClick;
-	  var disabled = _ref4.disabled;
+	function AddButton(_ref3) {
+	  var onClick = _ref3.onClick;
+	  var disabled = _ref3.disabled;
 
 	  return _react2.default.createElement(
 	    "div",
@@ -25087,7 +25026,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 198 */
+/* 197 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {"use strict";
@@ -25104,7 +25043,7 @@
 
 	var _utils = __webpack_require__(171);
 
-	var _CheckboxWidget = __webpack_require__(199);
+	var _CheckboxWidget = __webpack_require__(198);
 
 	var _CheckboxWidget2 = _interopRequireDefault(_CheckboxWidget);
 
@@ -25180,7 +25119,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 199 */
+/* 198 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {"use strict";
@@ -25243,7 +25182,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 200 */
+/* 199 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {"use strict";
@@ -25260,7 +25199,7 @@
 
 	var _utils = __webpack_require__(171);
 
-	var _StringField = __webpack_require__(201);
+	var _StringField = __webpack_require__(200);
 
 	var _StringField2 = _interopRequireDefault(_StringField);
 
@@ -25291,7 +25230,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 201 */
+/* 200 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {"use strict";
@@ -25308,11 +25247,11 @@
 
 	var _utils = __webpack_require__(171);
 
-	var _TextWidget = __webpack_require__(187);
+	var _TextWidget = __webpack_require__(186);
 
 	var _TextWidget2 = _interopRequireDefault(_TextWidget);
 
-	var _SelectWidget = __webpack_require__(186);
+	var _SelectWidget = __webpack_require__(185);
 
 	var _SelectWidget2 = _interopRequireDefault(_SelectWidget);
 
@@ -25387,7 +25326,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 202 */
+/* 201 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {"use strict";
@@ -25486,7 +25425,6 @@
 	      var fields = _props$registry.fields;
 	      var SchemaField = fields.SchemaField;
 	      var TitleField = fields.TitleField;
-	      var DescriptionField = fields.DescriptionField;
 
 	      var schema = (0, _utils.retrieveSchema)(this.props.schema, definitions);
 	      var title = schema.title || name;
@@ -25525,10 +25463,11 @@
 	          id: idSchema.id + "__title",
 	          title: title,
 	          required: required }) : null,
-	        schema.description ? _react2.default.createElement(DescriptionField, {
-	          id: idSchema.id + "__description",
-	          description: schema.description
-	        }) : null,
+	        schema.description ? _react2.default.createElement(
+	          "p",
+	          { className: "field-description" },
+	          schema.description
+	        ) : null,
 	        orderedProperties.map(function (name, index) {
 	          return _react2.default.createElement(SchemaField, { key: index,
 	            name: name,
@@ -25584,7 +25523,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 203 */
+/* 202 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -25614,7 +25553,7 @@
 	}
 
 /***/ },
-/* 204 */
+/* 203 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -25660,7 +25599,7 @@
 	}
 
 /***/ },
-/* 205 */
+/* 204 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -25674,7 +25613,7 @@
 	exports.toErrorList = toErrorList;
 	exports.default = validateFormData;
 
-	var _jsonschema = __webpack_require__(206);
+	var _jsonschema = __webpack_require__(205);
 
 	var _utils = __webpack_require__(171);
 
@@ -25766,23 +25705,18 @@
 	}
 
 	function toErrorList(errorSchema) {
-	  var fieldName = arguments.length <= 1 || arguments[1] === undefined ? "root" : arguments[1];
-
-	  // XXX: We should transform fieldName as a full field path string.
-	  var errorList = [];
-	  if ("__errors" in errorSchema) {
-	    errorList = errorList.concat(errorSchema.__errors.map(function (stack) {
-	      return {
-	        stack: fieldName + ": " + stack
-	      };
-	    }));
-	  }
 	  return Object.keys(errorSchema).reduce(function (acc, key) {
-	    if (key !== "__errors") {
-	      acc = acc.concat(toErrorList(errorSchema[key], key));
+	    var field = errorSchema[key];
+	    if ("__errors" in field) {
+	      // XXX: We should transform key as a full field path string.
+	      acc = acc.concat(field.__errors.map(function (stack) {
+	        return { stack: key + " " + stack };
+	      }));
+	    } else if ((0, _utils.isObject)(field)) {
+	      acc = acc.concat(toErrorList(field));
 	    }
 	    return acc;
-	  }, errorList);
+	  }, []);
 	}
 
 	function createErrorHandler(formData) {
@@ -25842,16 +25776,16 @@
 	}
 
 /***/ },
-/* 206 */
+/* 205 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var Validator = module.exports.Validator = __webpack_require__(207);
+	var Validator = module.exports.Validator = __webpack_require__(206);
 
-	module.exports.ValidatorResult = __webpack_require__(215).ValidatorResult;
-	module.exports.ValidationError = __webpack_require__(215).ValidationError;
-	module.exports.SchemaError = __webpack_require__(215).SchemaError;
+	module.exports.ValidatorResult = __webpack_require__(214).ValidatorResult;
+	module.exports.ValidationError = __webpack_require__(214).ValidationError;
+	module.exports.SchemaError = __webpack_require__(214).SchemaError;
 
 	module.exports.validate = function (instance, schema, options) {
 	  var v = new Validator();
@@ -25860,15 +25794,15 @@
 
 
 /***/ },
-/* 207 */
+/* 206 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var urilib = __webpack_require__(208);
+	var urilib = __webpack_require__(207);
 
-	var attribute = __webpack_require__(214);
-	var helpers = __webpack_require__(215);
+	var attribute = __webpack_require__(213);
+	var helpers = __webpack_require__(214);
 	var ValidatorResult = helpers.ValidatorResult;
 	var SchemaError = helpers.SchemaError;
 	var SchemaContext = helpers.SchemaContext;
@@ -26186,7 +26120,7 @@
 
 
 /***/ },
-/* 208 */
+/* 207 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// Copyright Joyent, Inc. and other Node contributors.
@@ -26210,7 +26144,7 @@
 	// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
 	// USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-	var punycode = __webpack_require__(209);
+	var punycode = __webpack_require__(208);
 
 	exports.parse = urlParse;
 	exports.resolve = urlResolve;
@@ -26282,7 +26216,7 @@
 	      'gopher:': true,
 	      'file:': true
 	    },
-	    querystring = __webpack_require__(211);
+	    querystring = __webpack_require__(210);
 
 	function urlParse(url, parseQueryString, slashesDenoteHost) {
 	  if (url && isObject(url) && url instanceof Url) return url;
@@ -26899,7 +26833,7 @@
 
 
 /***/ },
-/* 209 */
+/* 208 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(module, global) {/*! https://mths.be/punycode v1.3.2 by @mathias */
@@ -27431,10 +27365,10 @@
 
 	}(this));
 
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(210)(module), (function() { return this; }())))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(209)(module), (function() { return this; }())))
 
 /***/ },
-/* 210 */
+/* 209 */
 /***/ function(module, exports) {
 
 	module.exports = function(module) {
@@ -27450,17 +27384,17 @@
 
 
 /***/ },
-/* 211 */
+/* 210 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	exports.decode = exports.parse = __webpack_require__(212);
-	exports.encode = exports.stringify = __webpack_require__(213);
+	exports.decode = exports.parse = __webpack_require__(211);
+	exports.encode = exports.stringify = __webpack_require__(212);
 
 
 /***/ },
-/* 212 */
+/* 211 */
 /***/ function(module, exports) {
 
 	// Copyright Joyent, Inc. and other Node contributors.
@@ -27546,7 +27480,7 @@
 
 
 /***/ },
-/* 213 */
+/* 212 */
 /***/ function(module, exports) {
 
 	// Copyright Joyent, Inc. and other Node contributors.
@@ -27616,12 +27550,12 @@
 
 
 /***/ },
-/* 214 */
+/* 213 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var helpers = __webpack_require__(215);
+	var helpers = __webpack_require__(214);
 
 	/** @type ValidatorResult */
 	var ValidatorResult = helpers.ValidatorResult;
@@ -28407,12 +28341,12 @@
 
 
 /***/ },
-/* 215 */
+/* 214 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var uri = __webpack_require__(208);
+	var uri = __webpack_require__(207);
 
 	var ValidationError = exports.ValidationError = function ValidationError (message, instance, schema, propertyPath, name, argument) {
 	  if (propertyPath) {
@@ -28692,7 +28626,7 @@
 
 
 /***/ },
-/* 216 */
+/* 215 */
 /***/ function(module, exports) {
 
 	var schema = {
@@ -29622,7 +29556,7 @@
 	module.exports = schema;
 
 /***/ },
-/* 217 */
+/* 216 */
 /***/ function(module, exports) {
 
 	var uiSchema = {
@@ -29714,7 +29648,7 @@
 	module.exports = uiSchema;
 
 /***/ },
-/* 218 */
+/* 217 */
 /***/ function(module, exports) {
 
 	var dummyData = {
