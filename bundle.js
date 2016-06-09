@@ -52,7 +52,7 @@
 	var formUiSchema = __webpack_require__(216);
 	var dummyData = __webpack_require__(217);
 
-	const Form = JSONSchemaForm.default;
+	var Form = JSONSchemaForm.default;
 
 	// var version = require('../package.json').version;
 	var version = '0.0.1';
@@ -83,7 +83,7 @@
 
 	}
 
-	const initialFormData = {};
+	var initialFormData = {};
 
 	walk(DCOIschema, formUiSchema, initialFormData);
 
@@ -128,7 +128,7 @@
 	    },
 
 	    showLoadMyDataForm: function() {
-	        const myDataForm = React.createElement("div",
+	        var myDataForm = React.createElement("div",
 	            {className: "form-group field field-object"},
 	            React.createElement("h4",
 	                {}, "Please enter your json:"
@@ -157,7 +157,7 @@
 	    },
 
 	    render: function render() {
-	        const {
+	        var {
 	            schema,
 	            uiSchema,
 	            formData,
