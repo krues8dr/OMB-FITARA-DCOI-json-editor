@@ -68,6 +68,8 @@
 	                    if (schema.properties[key].hasOwnProperty('minimum') && schema.properties[key].hasOwnProperty('maximum')) {
 	                        if (schema.properties[key].minimum == schema.properties[key].maximum) {
 	                            formData[key] = schema.properties[key].minimum;
+	                        } else {
+	                            formData[key] = '';
 	                        }
 	                    }
 	                }
