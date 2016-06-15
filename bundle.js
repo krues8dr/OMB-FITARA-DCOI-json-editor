@@ -25637,8 +25637,6 @@
 
 	var _utils = __webpack_require__(171);
 
-	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 	var RE_ERROR_ARRAY_PATH = /\[\d+]/g;
 
 	function errorPropertyToPath(property) {
@@ -25684,34 +25682,25 @@
 
 	    var path = errorPropertyToPath(property);
 	    var parent = errorSchema;
-	    var _iteratorNormalCompletion = true;
-	    var _didIteratorError = false;
-	    var _iteratorError = undefined;
+	    for (var _iterator = path.slice(1), _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
+	      var _ref;
 
-	    try {
-	      for (var _iterator = path.slice(1)[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-	        var segment = _step.value;
+	      if (_isArray) {
+	        if (_i >= _iterator.length) break;
+	        _ref = _iterator[_i++];
+	      } else {
+	        _i = _iterator.next();
+	        if (_i.done) break;
+	        _ref = _i.value;
+	      }
 
-	        if (!(segment in parent)) {
-	          parent[segment] = {};
-	        }
-	        parent = parent[segment];
+	      var segment = _ref;
+
+	      if (!(segment in parent)) {
+	        parent[segment] = {};
 	      }
-	    } catch (err) {
-	      _didIteratorError = true;
-	      _iteratorError = err;
-	    } finally {
-	      try {
-	        if (!_iteratorNormalCompletion && _iterator.return) {
-	          _iterator.return();
-	        }
-	      } finally {
-	        if (_didIteratorError) {
-	          throw _iteratorError;
-	        }
-	      }
+	      parent = parent[segment];
 	    }
-
 	    if (Array.isArray(parent.__errors)) {
 	      // We store the list of errors for this node in a property named __errors
 	      // to avoid name collision with a possible sub schema field named
@@ -25725,18 +25714,23 @@
 	}
 
 	function toErrorList(errorSchema) {
+	  var fieldName = arguments.length <= 1 || arguments[1] === undefined ? "root" : arguments[1];
+
+	  // XXX: We should transform fieldName as a full field path string.
+	  var errorList = [];
+	  if ("__errors" in errorSchema) {
+	    errorList = errorList.concat(errorSchema.__errors.map(function (stack) {
+	      return {
+	        stack: fieldName + ": " + stack
+	      };
+	    }));
+	  }
 	  return Object.keys(errorSchema).reduce(function (acc, key) {
-	    var field = errorSchema[key];
-	    if ("__errors" in field) {
-	      // XXX: We should transform key as a full field path string.
-	      acc = acc.concat(field.__errors.map(function (stack) {
-	        return { stack: key + " " + stack };
-	      }));
-	    } else if ((0, _utils.isObject)(field)) {
-	      acc = acc.concat(toErrorList(field));
+	    if (key !== "__errors") {
+	      acc = acc.concat(toErrorList(errorSchema[key], key));
 	    }
 	    return acc;
-	  }, []);
+	  }, errorList);
 	}
 
 	function createErrorHandler(formData) {
@@ -25751,7 +25745,9 @@
 	  };
 	  if ((0, _utils.isObject)(formData)) {
 	    return Object.keys(formData).reduce(function (acc, key) {
-	      return _extends({}, acc, _defineProperty({}, key, createErrorHandler(formData[key])));
+	      var _extends2;
+
+	      return _extends({}, acc, (_extends2 = {}, _extends2[key] = createErrorHandler(formData[key]), _extends2));
 	    }, handler);
 	  }
 	  return handler;
@@ -25759,12 +25755,16 @@
 
 	function unwrapErrorHandler(errorHandler) {
 	  return Object.keys(errorHandler).reduce(function (acc, key) {
+	    var _extends4;
+
 	    if (key === "addError") {
 	      return acc;
 	    } else if (key === "__errors") {
-	      return _extends({}, acc, _defineProperty({}, key, errorHandler[key]));
+	      var _extends3;
+
+	      return _extends({}, acc, (_extends3 = {}, _extends3[key] = errorHandler[key], _extends3));
 	    }
-	    return _extends({}, acc, _defineProperty({}, key, unwrapErrorHandler(errorHandler[key])));
+	    return _extends({}, acc, (_extends4 = {}, _extends4[key] = unwrapErrorHandler(errorHandler[key]), _extends4));
 	  }, {});
 	}
 
