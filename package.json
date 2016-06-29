@@ -20,15 +20,15 @@
   "dependencies": {
     "react": "^15.1.0",
     "react-dom": "^15.1.0",
-    "react-jsonschema-form": "0.30.0"
+    "react-jsonschema-form": "^0.34.1"
   },
   "devDependencies": {
     "bootstrap": "^3.3.6",
     "css-loader": "^0.23.1",
     "exports-loader": "^0.6.3",
-    "express": "^4.13.4",
+    "express": "^4.14.0",
     "extract-text-webpack-plugin": "^1.0.1",
-    "file-loader": "^0.8.5",
+    "file-loader": "^0.9.0",
     "gh-pages": "^0.11.0",
     "imports-loader": "^0.6.5",
     "rimraf": "^2.5.2",
