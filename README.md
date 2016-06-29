@@ -1,7 +1,6 @@
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/16cd662b24dd43a593737663be79f635)](https://www.codacy.com/app/alexandr-perfilov/OMB-FITARA-DCOI-json-editor?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=REI-Systems/OMB-FITARA-DCOI-json-editor&amp;utm_campaign=Badge_Grade)
-
 # DCOI-json-editor
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/16cd662b24dd43a593737663be79f635)](https://www.codacy.com/app/alexandr-perfilov/OMB-FITARA-DCOI-json-editor?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=REI-Systems/OMB-FITARA-DCOI-json-editor&amp;utm_campaign=Badge_Grade) 
 [![Join the chat at https://gitter.im/REI-Systems/OMB-FITARA-DCOI-json-editor](https://badges.gitter.im/REI-Systems/OMB-FITARA-DCOI-json-editor.svg)](https://gitter.im/REI-Systems/OMB-FITARA-DCOI-json-editor?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 ## Install local/dev
