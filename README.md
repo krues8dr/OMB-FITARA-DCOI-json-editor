@@ -2,6 +2,8 @@
 
 # DCOI-json-editor
 
+[![Join the chat at https://gitter.im/REI-Systems/OMB-FITARA-DCOI-json-editor](https://badges.gitter.im/REI-Systems/OMB-FITARA-DCOI-json-editor.svg)](https://gitter.im/REI-Systems/OMB-FITARA-DCOI-json-editor?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 ## Install local/dev
 
     git clone git@github.com:REI-Systems/OMB-FITARA-DCOI-json-editor.git
