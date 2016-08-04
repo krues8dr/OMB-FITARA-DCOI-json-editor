@@ -104,15 +104,6 @@ var schema = {
                             "minimum": 0,
                             "maximum": 100
                         },
-                        "stepsForAchievingPlannedValues": {
-                            "id": "https://omb.max.gov/schemas/DCOIStrategicPlans/optimizationMetrics/facilityUtilization/stepsForAchievingPlannedValues",
-                            "name": "stepsForAchievingPlannedValues",
-                            "title": "stepsForAchievingPlannedValues schema",
-                            "description": "An explanation of how your agency plans to reach your planned values in the given optimization metric.",
-                            "type": "string",
-                            "minLength": 200,
-                            "maxLength": 10000
-                        },
                         "explanationForUnmetPlannedValues": {
                             "id": "https://omb.max.gov/schemas/DCOIStrategicPlans/optimizationMetrics/facilityUtilization/explanationForUnmetPlannedValue",
                             "name": "explanationForUnmetPlannedValues",
@@ -133,8 +124,7 @@ var schema = {
                     "required": [
                         "fy16Planned",
                         "fy17Planned",
-                        "fy18Planned",
-                        "stepsForAchievingPlannedValues"
+                        "fy18Planned"
                     ],
                     "properties": {
                         "fy18OMBtarget": {
@@ -200,15 +190,6 @@ var schema = {
                             "minimum": 0,
                             "maximum": 100
                         },
-                        "stepsForAchievingPlannedValues": {
-                            "id": "https://omb.max.gov/schemas/DCOIStrategicPlans/optimizationMetrics/energyMetering/stepsForAchievingPlannedValues",
-                            "name": "stepsForAchievingPlannedValues",
-                            "title": "stepsForAchievingPlannedValues schema",
-                            "description": "How the agency plans to reach their targets in the given optimization metric.",
-                            "type": "string",
-                            "minLength": 200,
-                            "maxLength": 10000
-                        },
                         "explanationForUnmetPlannedValues": {
                             "id": "https://omb.max.gov/schemas/DCOIStrategicPlans/optimizationMetrics/energyMetering/explanationForUnmetPlannedValue",
                             "name": "explanationForUnmetPlannedValues",
@@ -229,8 +210,7 @@ var schema = {
                     "required": [
                         "fy16Planned",
                         "fy17Planned",
-                        "fy18Planned",
-                        "stepsForAchievingPlannedValues"
+                        "fy18Planned"
                     ],
                     "properties": {
                         "fy18OMBtarget": {
@@ -296,15 +276,6 @@ var schema = {
                             "minimum": 0,
                             "maximum": 5
                         },
-                        "stepsForAchievingPlannedValues": {
-                            "id": "https://omb.max.gov/schemas/DCOIStrategicPlans/optimizationMetrics/pue/stepsForAchievingPlannedValues",
-                            "name": "stepsForAchievingPlannedValues",
-                            "title": "stepsForAchievingPlannedValues schema",
-                            "description": "An explanation of how your agency plans to reach your planned values in the given optimization metric.",
-                            "type": "string",
-                            "minLength": 200,
-                            "maxLength": 10000
-                        },
                         "explanationForUnmetPlannedValues": {
                             "id": "https://omb.max.gov/schemas/DCOIStrategicPlans/optimizationMetrics/pue/explanationForUnmetPlannedValue",
                             "name": "explanationForUnmetPlannedValues",
@@ -325,8 +296,7 @@ var schema = {
                     "required": [
                         "fy16Planned",
                         "fy17Planned",
-                        "fy18Planned",
-                        "stepsForAchievingPlannedValues"
+                        "fy18Planned"
                     ],
                     "properties": {
                         "fy18OMBtarget": {
@@ -392,15 +362,6 @@ var schema = {
                             "minimum": 1,
                             "maximum": 50
                         },
-                        "stepsForAchievingPlannedValues": {
-                            "id": "https://omb.max.gov/schemas/DCOIStrategicPlans/optimizationMetrics/virtualization/stepsForAchievingPlannedValues",
-                            "name": "stepsForAchievingPlannedValues",
-                            "title": "stepsForAchievingPlannedValues schema",
-                            "description": "An explanation of how your agency plans to reach your planned values in the given optimization metric.",
-                            "type": "string",
-                            "minLength": 200,
-                            "maxLength": 10000
-                        },
                         "explanationForUnmetPlannedValues": {
                             "id": "https://omb.max.gov/schemas/DCOIStrategicPlans/optimizationMetrics/virtualization/explanationForUnmetPlannedValue",
                             "name": "explanationForUnmetPlannedValues",
@@ -421,8 +382,7 @@ var schema = {
                     "required": [
                         "fy16Planned",
                         "fy17Planned",
-                        "fy18Planned",
-                        "stepsForAchievingPlannedValues"
+                        "fy18Planned"
                     ],
                     "properties": {
                         "fy18OMBtarget": {
@@ -488,15 +448,6 @@ var schema = {
                             "minimum": 0,
                             "maximum": 100
                         },
-                        "stepsForAchievingPlannedValues": {
-                            "id": "https://omb.max.gov/schemas/DCOIStrategicPlans/optimizationMetrics/tieredServerUtAutoMonitoring/stepsForAchievingPlannedValues",
-                            "name": "stepsForAchievingPlannedValues",
-                            "title": "stepsForAchievingPlannedValues schema",
-                            "description": "An explanation of how your agency plans to reach your planned values in the given optimization metric.",
-                            "type": "string",
-                            "minLength": 200,
-                            "maxLength": 10000
-                        },
                         "explanationForUnmetPlannedValues": {
                             "id": "https://omb.max.gov/schemas/DCOIStrategicPlans/optimizationMetrics/tieredServerUtAutoMonitoring/explanationForUnmetPlannedValue",
                             "name": "explanationForUnmetPlannedValues",
@@ -517,8 +468,7 @@ var schema = {
                     "required": [
                         "fy16Planned",
                         "fy17Planned",
-                        "fy18Planned",
-                        "stepsForAchievingPlannedValues"
+                        "fy18Planned"
                     ],
                     "properties": {
                         "fy18OMBtarget": {
@@ -584,15 +534,6 @@ var schema = {
                             "minimum": 0,
                             "maximum": 100
                         },
-                        "stepsForAchievingPlannedValues": {
-                            "id": "https://omb.max.gov/schemas/DCOIStrategicPlans/optimizationMetrics/nontieredServerUtAutoMonitoring/stepsForAchievingPlannedValues",
-                            "name": "stepsForAchievingPlannedValues",
-                            "title": "stepsForAchievingPlannedValues schema",
-                            "description": "An explanation of how your agency plans to reach your planned values in the given optimization metric.",
-                            "type": "string",
-                            "minLength": 200,
-                            "maxLength": 10000
-                        },
                         "explanationForUnmetPlannedValues": {
                             "id": "https://omb.max.gov/schemas/DCOIStrategicPlans/optimizationMetrics/nontieredServerUtAutoMonitoring/explanationForUnmetPlannedValue",
                             "name": "explanationForUnmetPlannedValues",
@@ -615,8 +556,7 @@ var schema = {
             "required": [
                 "fy16Planned",
                 "fy17Planned",
-                "fy18Planned",
-                "stepsForAchievingPlannedValues"
+                "fy18Planned"
             ],
             "properties": {
                 "fy18OMBtarget": {
@@ -626,7 +566,7 @@ var schema = {
                     "description": "Value your agency must reach by the end of fy 2018 in total tiered closures; set by OMB.",
                     "type": "number",
                     "minimum": 0,
-                    "maximum": 1000,
+                    "maximum": 4000,
                     "multipleOf": 1
                 },
                 "fy16Planned": {
@@ -689,15 +629,6 @@ var schema = {
                     "maximum": 1000,
                     "multipleOf": 1
                 },
-                "stepsForAchievingPlannedValues": {
-                    "id": "https://omb.max.gov/schemas/DCOIStrategicPlans/tieredClosures/stepsForAchievingPlannedValues",
-                    "name": "stepsForAchievingPlannedValues",
-                    "title": "stepsForAchievingPlannedValues schema",
-                    "description": "An explanation for how your agency plans to reach your planned values in total tiered closures.",
-                    "type": "string",
-                    "minLength": 700,
-                    "maxLength": 10000
-                },
                 "explanationForUnmetPlannedValues": {
                     "id": "https://omb.max.gov/schemas/DCOIStrategicPlans/tieredClosures/explanationForUnmetPlannedValue",
                     "name": "explanationForUnmetPlannedValues",
@@ -718,8 +649,7 @@ var schema = {
             "required": [
                 "fy16Planned",
                 "fy17Planned",
-                "fy18Planned",
-                "stepsForAchievingPlannedValues"
+                "fy18Planned"
             ],
             "properties": {
                 "fy18OMBtarget": {
@@ -729,7 +659,7 @@ var schema = {
                     "description": "Value your agency must reach by the end of fy 2018 in total non-tiered closures; set by OMB.",
                     "type": "number",
                     "minimum": 0,
-                    "maximum": 3000,
+                    "maximum": 4000,
                     "multipleOf": 1
                 },
                 "fy16Planned": {
@@ -792,15 +722,6 @@ var schema = {
                     "maximum": 3000,
                     "multipleOf": 1
                 },
-                "stepsForAchievingPlannedValues": {
-                    "id": "https://omb.max.gov/schemas/DCOIStrategicPlans/nontieredClosures/stepsForAchievingPlannedValues",
-                    "name": "fy16Planned",
-                    "title": "fy16Planned schema",
-                    "description": "An explanation of how your agency plans to reach your planned values in total non-tiered closures.",
-                    "type": "string",
-                    "minLength": 700,
-                    "maxLength": 10000
-                },
                 "explanationForUnmetPlannedValues": {
                     "id": "https://omb.max.gov/schemas/DCOIStrategicPlans/nontieredClosures/explanationForUnmetPlannedValue",
                     "name": "explanationForUnmetPlannedValues",
@@ -822,7 +743,6 @@ var schema = {
                 "fy16Planned",
                 "fy17Planned",
                 "fy18Planned",
-                "stepsForAchievingPlannedValues",
                 "costsOfClosures",
                 "costsOfOptimization",
                 "lifecycleCostSavingsEstimated"
@@ -890,15 +810,6 @@ var schema = {
                     "type": "number",
                     "minimum": 0,
                     "maximum": 40000
-                },
-                "stepsForAchievingPlannedValues": {
-                    "id": "https://omb.max.gov/schemas/DCOIStrategicPlans/optimizationMetrics/tieredServerUtAutoMonitoring/stepsForAchievingPlannedValues",
-                    "name": "fy16Planned",
-                    "title": "fy16Planned schema",
-                    "description": "An explanation of how your agency plans to reach your planned values in the given optimization metric.",
-                    "type": "string",
-                    "minLength": 200,
-                    "maxLength": 10000
                 },
                 "explanationForUnmetPlannedValues": {
                     "id": "https://omb.max.gov/schemas/DCOIStrategicPlans/optimizationMetrics/tieredServerUtAutoMonitoring/explanationForUnmetPlannedValue",
