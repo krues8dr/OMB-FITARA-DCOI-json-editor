@@ -98,7 +98,7 @@
 	var App = React.createClass({
 	    displayName: "App",
 
-	    getInitialState() {
+	    getInitialState: function() {
 	        return {
 	            schema: DCOIschema,
 	            uiSchema: formUiSchema,
@@ -109,7 +109,7 @@
 	        };
 	    },
 
-	    generateJson(data) {
+	    generateJson: function(data) {
 	        var out = React.createElement("textarea", {
 	            className: "form-control",
 	            value: JSON.stringify(data.formData, null, "\t"),
@@ -118,18 +118,18 @@
 	        this.setState({output: out});
 	    },
 
-	    loadDummyData() {
+	    loadDummyData: function() {
 	        if (this.state.formData === initialFormData || confirm("Your form data will be replaced with dummy data, so your changes will be lost. Are you sure you want to proceed?")) {
 	            this.setState({formData: dummyData});
 	        }
 	    },
 
-	    loadMyData() {
+	    loadMyData: function() {
 	        var data = JSON.parse(document.getElementById("json-input").value);
 	        this.setState({formData: data, inputForm: ""});
 	    },
 
-	    showLoadMyDataForm() {
+	    showLoadMyDataForm: function() {
 	        var myDataForm = React.createElement("div",
 	            {className: "form-group field field-object"},
 	            React.createElement("h4",
@@ -154,11 +154,11 @@
 	        this.setState({inputForm: myDataForm});
 	    },
 
-	    onFormDataChange(obj) {
+	    onFormDataChange: function(obj) {
 	        this.setState({formData: obj.formData, output: ""})
 	    },
 
-	    render() {
+	    render: function() {
 	        var schema = this.state.schema;
 	        var uiSchema = this.state.uiSchema;
 	        var formData = this.state.formData;
