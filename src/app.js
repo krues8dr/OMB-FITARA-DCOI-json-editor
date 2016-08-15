@@ -89,6 +89,9 @@ var App = React.createClass({
             React.createElement("h4",
                 {}, "Please enter your json:"
             ),
+            React.createElement("label",
+                { htmlFor: "json-input", className: "sr-only"}, "Enter json"
+            ),
             React.createElement("textarea",
                 {
                     className: "form-control",
@@ -100,7 +103,7 @@ var App = React.createClass({
                 React.createElement("button",
                     {
                         onClick: this.loadMyData,
-                        className: "btn btn-primary"
+                        className: "load-data"
                     },
                     "Load data"
                 ))
@@ -132,12 +135,12 @@ var App = React.createClass({
                         key: "ctrls"
                     },
                     React.createElement("button", {
-                        className: "btn btn-danger pull-right",
+                        className: "dummy-data",
                         onClick: this.loadDummyData,
                         key: "dummy"
                     }, "Load dummy data (test)"),
                     React.createElement("button", {
-                        className: "btn btn-primary pull-left",
+                        className: "own-data",
                         onClick: this.showLoadMyDataForm,
                         key: "mydata"
                     }, "Load my own data")
