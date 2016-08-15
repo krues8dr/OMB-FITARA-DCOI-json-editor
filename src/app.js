@@ -94,6 +94,7 @@ var App = React.createClass({
             ),
             React.createElement("textarea",
                 {
+
                     className: "form-control",
                     id: "json-input"
                 }
