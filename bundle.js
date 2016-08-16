@@ -25830,6 +25830,7 @@
 	  return _react2.default.createElement("textarea", {
 	    id: id,
 	    className: "form-control",
+	    "aria-describedby": "hint",
 	    value: typeof value === "undefined" ? "" : value,
 	    placeholder: placeholder,
 	    required: required,
