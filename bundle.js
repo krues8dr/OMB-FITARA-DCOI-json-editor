@@ -22040,14 +22040,15 @@
 	  if (typeof help === "string") {
 	    return _react2.default.createElement(
 	      "p",
-	      { className: "help-block" },
+	      { className: "help-block",
+	        id: "hint"},
 	      help
 	    );
 	  }
 	  return _react2.default.createElement(
 	    "div",
-	    { className: "help-block",
-	      id: "hint"},
+	    { className: "help-block"
+	     },
 	    help
 	  );
 	}
