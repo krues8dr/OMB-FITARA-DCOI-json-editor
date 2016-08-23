@@ -21909,7 +21909,7 @@
 	          null,
 	          _react2.default.createElement(
 	            "button",
-	            { type: "submit", className: "submit-info" },
+	            { type: "submit", className: "btn btn-info" },
 	            "Submit"
 	          )
 	        )
@@ -22040,15 +22040,13 @@
 	  if (typeof help === "string") {
 	    return _react2.default.createElement(
 	      "p",
-	      { className: "help-block",
-	        id: "hint"},
+	      { className: "help-block" },
 	      help
 	    );
 	  }
 	  return _react2.default.createElement(
 	    "div",
-	    { className: "help-block"
-	     },
+	    { className: "help-block" },
 	    help
 	  );
 	}
@@ -25032,7 +25030,6 @@
 
 	  return _react2.default.createElement("input", _extends({}, props, {
 	    className: "form-control",
-	    "aria-describedby": "hint",
 	    readOnly: readonly,
 	    value: typeof value === "undefined" ? "" : value,
 	    onChange: function onChange(event) {
@@ -25830,7 +25827,6 @@
 	  return _react2.default.createElement("textarea", {
 	    id: id,
 	    className: "form-control",
-	    "aria-describedby": "hint",
 	    value: typeof value === "undefined" ? "" : value,
 	    placeholder: placeholder,
 	    required: required,
@@ -30363,7 +30359,8 @@
 	                            "description": "Value your agency must reach by the end of fy 2018 in the given optimization metric; set by OMB.",
 	                            "type": "number",
 	                            "minimum": 80,
-	                            "maximum": 80
+	                            "maximum": 80,
+	                            "default": 80
 	                        },
 	                        "fy16Planned": {
 	                            "id": "https://omb.max.gov/schemas/DCOIStrategicPlans/optimizationMetrics/facilityUtilization/fy16Planned",
@@ -30419,6 +30416,15 @@
 	                            "minimum": 0,
 	                            "maximum": 100
 	                        },
+	                        "stepsForAchievingPlannedValues": {
+	                            "id": "https://omb.max.gov/schemas/DCOIStrategicPlans/optimizationMetrics/facilityUtilization/stepsForAchievingPlannedValues",
+	                            "name": "stepsForAchievingPlannedValues",
+	                            "title": "stepsForAchievingPlannedValues",
+	                            "description": "Steps your agency will take to meet your planned values in the given optimization metric.",
+	                            "type": "string",
+	                            "minLength": 0,
+	                            "maxLength": 10000
+	                        },
 	                        "explanationForUnmetPlannedValues": {
 	                            "id": "https://omb.max.gov/schemas/DCOIStrategicPlans/optimizationMetrics/facilityUtilization/explanationForUnmetPlannedValue",
 	                            "name": "explanationForUnmetPlannedValues",
@@ -30449,7 +30455,8 @@
 	                            "description": "Value your agency must reach by the end of fy 2018 in the given optimization metric; set by OMB.",
 	                            "type": "number",
 	                            "minimum": 100,
-	                            "maximum": 100
+	                            "maximum": 100,
+	                            "default": 100
 	                        },
 	                        "fy16Planned": {
 	                            "id": "https://omb.max.gov/schemas/DCOIStrategicPlans/optimizationMetrics/energyMetering/fy16Planned",
@@ -30535,7 +30542,8 @@
 	                            "description": "Value your agency must reach by the end of fy 2018 in the given optimization metric; set by OMB.",
 	                            "type": "number",
 	                            "minimum": 1.4,
-	                            "maximum": 1.5
+	                            "maximum": 1.5,
+	                            "default": 1.4
 	                        },
 	                        "fy16Planned": {
 	                            "id": "https://omb.max.gov/schemas/DCOIStrategicPlans/optimizationMetrics/pue/fy16Planned",
@@ -30621,7 +30629,8 @@
 	                            "description": "Value your agency must reach by the end of fy 2018 in the given optimization metric; set by OMB.",
 	                            "type": "number",
 	                            "minimum": 4,
-	                            "maximum": 4
+	                            "maximum": 4,
+	                            "default": 4
 	                        },
 	                        "fy16Planned": {
 	                            "id": "https://omb.max.gov/schemas/DCOIStrategicPlans/optimizationMetrics/virtualization/fy16Planned",
@@ -30707,7 +30716,8 @@
 	                            "description": "Value your agency must reach by the end of fy 2018 in the given optimization metric; set by OMB.",
 	                            "type": "number",
 	                            "minimum": 65,
-	                            "maximum": 65
+	                            "maximum": 65,
+	                            "default": 65
 	                        },
 	                        "fy16Planned": {
 	                            "id": "https://omb.max.gov/schemas/DCOIStrategicPlans/optimizationMetrics/tieredServerUtAutoMonitoring/fy16Planned",
@@ -30793,7 +30803,8 @@
 	                            "description": "Value your agency must reach by the end of fy 2018 in the given optimization metric; set by OMB.",
 	                            "type": "number",
 	                            "minimum": 65,
-	                            "maximum": 65
+	                            "maximum": 65,
+	                            "default": 65
 	                        },
 	                        "fy16Planned": {
 	                            "id": "https://omb.max.gov/schemas/DCOIStrategicPlans/optimizationMetrics/nontieredServerUtAutoMonitoring/fy16Planned",
