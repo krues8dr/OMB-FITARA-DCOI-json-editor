@@ -30349,7 +30349,6 @@
 	                        "fy16Planned",
 	                        "fy17Planned",
 	                        "fy18Planned",
-	                        "stepsForAchievingPlannedValues"
 	                    ],
 	                    "properties": {
 	                        "fy18OMBtarget": {
@@ -30415,15 +30414,6 @@
 	                            "type": "number",
 	                            "minimum": 0,
 	                            "maximum": 100
-	                        },
-	                        "stepsForAchievingPlannedValues": {
-	                            "id": "https://omb.max.gov/schemas/DCOIStrategicPlans/optimizationMetrics/facilityUtilization/stepsForAchievingPlannedValues",
-	                            "name": "stepsForAchievingPlannedValues",
-	                            "title": "stepsForAchievingPlannedValues",
-	                            "description": "Steps your agency will take to meet your planned values in the given optimization metric.",
-	                            "type": "string",
-	                            "minLength": 0,
-	                            "maxLength": 10000
 	                        },
 	                        "explanationForUnmetPlannedValues": {
 	                            "id": "https://omb.max.gov/schemas/DCOIStrategicPlans/optimizationMetrics/facilityUtilization/explanationForUnmetPlannedValue",
@@ -31187,74 +31177,47 @@
 	var uiSchema = {
 	    "optimizationMetrics": {
 	        "facilityUtilization": {
-	            "stepsForAchievingPlannedValues": {
-	                "ui:widget": "textarea"
-	            },
 	            "explanationForUnmetPlannedValues": {
 	                "ui:widget": "textarea"
 	            }
 	        },
 	        "energyMetering": {
-	            "stepsForAchievingPlannedValues": {
-	                "ui:widget": "textarea"
-	            },
 	            "explanationForUnmetPlannedValues": {
 	                "ui:widget": "textarea"
 	            }
 	        },
 	        "pue": {
-	            "stepsForAchievingPlannedValues": {
-	                "ui:widget": "textarea"
-	            },
 	            "explanationForUnmetPlannedValues": {
 	                "ui:widget": "textarea"
 	            }
 	        },
 	        "virtualization": {
-	            "stepsForAchievingPlannedValues": {
-	                "ui:widget": "textarea"
-	            },
 	            "explanationForUnmetPlannedValues": {
 	                "ui:widget": "textarea"
 	            }
 	        },
 	        "tieredServerUtAutoMonitoring": {
-	            "stepsForAchievingPlannedValues": {
-	                "ui:widget": "textarea"
-	            },
 	            "explanationForUnmetPlannedValues": {
 	                "ui:widget": "textarea"
 	            }
 	        },
 	        "nontieredServerUtAutoMonitoring": {
-	            "stepsForAchievingPlannedValues": {
-	                "ui:widget": "textarea"
-	            },
 	            "explanationForUnmetPlannedValues": {
 	                "ui:widget": "textarea"
 	            }
 	        }
 	    },
 	    "tieredClosures": {
-	        "stepsForAchievingPlannedValues": {
-	            "ui:widget": "textarea"
-	        },
 	        "explanationForUnmetPlannedValues": {
 	            "ui:widget": "textarea"
 	        }
 	    },
 	    "nontieredClosures":{
-	        "stepsForAchievingPlannedValues": {
-	            "ui:widget": "textarea"
-	        },
 	        "explanationForUnmetPlannedValues": {
 	            "ui:widget": "textarea"
 	        }
 	    },
 	    "costSavings":{
-	        "stepsForAchievingPlannedValues": {
-	            "ui:widget": "textarea"
-	        },
 	        "explanationForUnmetPlannedValues": {
 	            "ui:widget": "textarea"
 	        },
