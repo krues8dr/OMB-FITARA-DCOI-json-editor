@@ -37,8 +37,7 @@ var schema = {
                     "required": [
                         "fy16Planned",
                         "fy17Planned",
-                        "fy18Planned",
-                        "stepsForAchievingPlannedValues"
+                        "fy18Planned"
                     ],
                     "properties": {
                         "fy18OMBtarget": {
@@ -104,15 +103,6 @@ var schema = {
                             "type": "number",
                             "minimum": 0,
                             "maximum": 100
-                        },
-                        "stepsForAchievingPlannedValues": {
-                            "id": "https://omb.max.gov/schemas/DCOIStrategicPlans/optimizationMetrics/facilityUtilization/stepsForAchievingPlannedValues",
-                            "name": "stepsForAchievingPlannedValues",
-                            "title": "stepsForAchievingPlannedValues",
-                            "description": "Steps your agency will take to meet your planned values in the given optimization metric.",
-                            "type": "string",
-                            "minLength": 0,
-                            "maxLength": 10000
                         },
                         "explanationForUnmetPlannedValues": {
                             "id": "https://omb.max.gov/schemas/DCOIStrategicPlans/optimizationMetrics/facilityUtilization/explanationForUnmetPlannedValue",
