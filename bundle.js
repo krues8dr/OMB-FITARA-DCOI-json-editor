@@ -30348,7 +30348,7 @@
 	                    "required": [
 	                        "fy16Planned",
 	                        "fy17Planned",
-	                        "fy18Planned",
+	                        "fy18Planned"
 	                    ],
 	                    "properties": {
 	                        "fy18OMBtarget": {
