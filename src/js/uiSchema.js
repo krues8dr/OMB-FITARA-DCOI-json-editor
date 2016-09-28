@@ -51,7 +51,7 @@ var uiSchema = {
         "costsOfOptimization": {
             "ui:widget": "textarea"
         },
-        "lifecycleCostSavingsEstimated": {
+        "historicalCostSavings": {
             "ui:widget": "textarea"
         }
     }

@@ -843,11 +843,11 @@ var schema = {
                     "minLength": 5,
                     "maxLength": 10000
                 },
-                "lifecycleCostSavingsEstimated": {
-                    "id": "https://omb.max.gov/schemas/DCOIStrategicPlans/costSavings/lifecycleCostSavingsEstimated",
-                    "name": "lifecycleCostSavingsEstimated",
-                    "title": "lifecycleCostSavingsEstimated",
-                    "description": "An explanation of the lifecycle costs your agency expects for data centers.",
+                "historicalCostSavings": {
+                    "id": "https://omb.max.gov/schemas/DCOIStrategicPlans/costSavings/historicalCostSavings",
+                    "name": "historicalCostSavings",
+                    "title": "historicalCostSavings",
+                    "description": "An explanation of the historical costs and historical cost savings for each of the years 2010, 2011, 2012, 2013, 2014, and 2015 for data centers.",
                     "type": "string",
                     "minLength": 5,
                     "maxLength": 10000
