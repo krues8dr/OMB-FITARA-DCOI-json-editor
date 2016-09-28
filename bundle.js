@@ -29943,7 +29943,7 @@
 	                "fy18Planned",
 	                "costsOfClosures",
 	                "costsOfOptimization",
-	                "lifecycleCostSavingsEstimated"
+	                "historicalCostSavings"
 	            ],
 	            "properties": {
 	                "fy18OMBtarget": {
