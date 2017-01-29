@@ -10,18 +10,11 @@
     npm i
     npm start
 
-Open http://localhost:3000/ in your browser
+Open [http://localhost:3000/](http://localhost:3000/) in your browser
 
 ## Push to GitHub Pages
 
     npm run publish-to-gh
-
-## Known issues
-
-Validation in IE11 doesn't work by default due to an issue in a library used.
-More information is available in this issue: https://github.com/mozilla-services/react-jsonschema-form/issues/236
-
-There is also an ugly workaround you can temporarily use.
 
 ## Powered by
 [react-jsonschema-form](https://github.com/mozilla-services/react-jsonschema-form)
