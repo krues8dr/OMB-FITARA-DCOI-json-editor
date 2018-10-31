@@ -2,9 +2,9 @@ var React = require("react");
 
 var ReactDOM = require("react-dom");
 var JSONSchemaForm = require("react-jsonschema-form");
-var DCOIschema = require("./js/schema.js");
-var formUiSchema = require("./js/uiSchema.js");
-var dummyData = require("./js/dummy.js");
+var DCOIschema = require("./js/schema");
+var formUiSchema = require("./js/uiSchema");
+var dummyData = require("./js/dummy");
 
 var Form = JSONSchemaForm.default;
 
