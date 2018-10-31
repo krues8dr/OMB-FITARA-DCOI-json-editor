@@ -331,15 +331,6 @@
                 "historicalCostSavings"
             ],
             "properties": {
-                "fy18OMBtarget": {
-                    "id": "https://omb.max.gov/schemas/DCOIStrategicPlans/costSavings/fy18OMBTarget",
-                    "name": "fy18OMBtarget",
-                    "title": "fy18OMBTarget",
-                    "description": "Value your agency must reach by the end of fy 2018 in cost savings from data centers; set by OMB; in MILLIONS of dollars.",
-                    "type": "number",
-                    "minimum": 0,
-                    "maximum": 40000
-                },
                 "fy16Planned": {
                     "id": "https://omb.max.gov/schemas/DCOIStrategicPlans/costSavings/fy16Planned",
                     "name": "fy16Planned",
