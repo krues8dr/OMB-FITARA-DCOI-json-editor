@@ -1,16 +1,6 @@
-var uiSchema = {
+{
     "optimizationMetrics": {
-        "facilityUtilization": {
-            "explanationForUnmetPlannedValues": {
-                "ui:widget": "textarea"
-            }
-        },
         "energyMetering": {
-            "explanationForUnmetPlannedValues": {
-                "ui:widget": "textarea"
-            }
-        },
-        "pue": {
             "explanationForUnmetPlannedValues": {
                 "ui:widget": "textarea"
             }
@@ -20,23 +10,18 @@ var uiSchema = {
                 "ui:widget": "textarea"
             }
         },
-        "tieredServerUtAutoMonitoring": {
+        "underutilizedServers": {
             "explanationForUnmetPlannedValues": {
                 "ui:widget": "textarea"
             }
         },
-        "nontieredServerUtAutoMonitoring": {
+        "availability": {
             "explanationForUnmetPlannedValues": {
                 "ui:widget": "textarea"
             }
         }
     },
-    "tieredClosures": {
-        "explanationForUnmetPlannedValues": {
-            "ui:widget": "textarea"
-        }
-    },
-    "nontieredClosures":{
+    "closures": {
         "explanationForUnmetPlannedValues": {
             "ui:widget": "textarea"
         }
@@ -55,6 +40,4 @@ var uiSchema = {
             "ui:widget": "textarea"
         }
     }
-};
-
-module.exports = uiSchema;
+}
