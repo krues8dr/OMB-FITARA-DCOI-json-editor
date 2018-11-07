@@ -1,5 +1,5 @@
 const webpack = require("webpack");
-const json = require("json-loader");
+// const json = require("json-loader");
 
 module.exports = {
     entry: "./src/app.js",
@@ -14,7 +14,7 @@ module.exports = {
       loaders: [
         {
           test: /\.json$/,
-          loader: 'json-loader'
+          loader: "json-loader"
         }
       ]
     }
