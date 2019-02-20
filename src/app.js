@@ -163,7 +163,13 @@ var App = React.createClass({
                         liveValidate: liveValidate,
                         onChange: this.onFormDataChange,
                         onSubmit: this.generateJson,
-                        key: "form"
+                        key: "form",
+                        children:
+                            React.createElement(
+                              "button",
+                              null,
+                              "Generate JSON"
+                            )
                     }
                 ),
                 React.createElement(
