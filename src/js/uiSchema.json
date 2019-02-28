@@ -8,6 +8,9 @@
         "virtualization": {
             "explanationForUnmetPlannedValues": {
                 "ui:widget": "textarea"
+            },
+            "methodology": {
+                "ui:widget": "textarea"
             }
         },
         "underutilizedServers": {
