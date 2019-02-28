@@ -102,6 +102,15 @@
                             "type": "string",
                             "minLength": 0,
                             "maxLength": 10000
+                        },
+                        "methodology": {
+                            "id": "https://omb.max.gov/schemas/DCOIStrategicPlans/optimizationMetrics/virtualization/methodology",
+                            "name": "methodology",
+                            "title": "methodology",
+                            "description": "Explanation for the methodology your agency used to arrive at the Virtualization metric.",
+                            "type": "string",
+                            "minLength": 0,
+                            "maxLength": 10000
                         }
                     }
                 },
