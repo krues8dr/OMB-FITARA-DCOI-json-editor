@@ -47,7 +47,7 @@ walk(DCOIschema, formUiSchema, initialFormData);
 initialFormData = {};
 
 // Covering browsers without Object.assign support (IE 9-11)
-require("./js/polyfill.js");
+// require("./js/polyfill.js");
 
 var App = React.createClass({
     displayName: "App",
