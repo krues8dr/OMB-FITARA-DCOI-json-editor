@@ -18,6 +18,7 @@
   "bugs": "https://github.com/REI-Systems/OMB-FITARA-DCOI-json-editor/issues",
   "homepage": "https://github.com/REI-Systems/OMB-FITARA-DCOI-json-editor",
   "dependencies": {
+    "@babel/polyfill": "^7.4.3",
     "react": "^15.1.0",
     "react-dom": "^15.1.0",
     "react-jsonschema-form": "^0.34.1"

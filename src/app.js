@@ -1,7 +1,8 @@
 var React = require("react");
-
 var ReactDOM = require("react-dom");
 var JSONSchemaForm = require("react-jsonschema-form");
+require("@babel/polyfill");
+
 var DCOIschema = require("./js/schema");
 var formUiSchema = require("./js/uiSchema");
 var dummyData = require("./js/dummy");
@@ -47,7 +48,7 @@ walk(DCOIschema, formUiSchema, initialFormData);
 initialFormData = {};
 
 // Covering browsers without Object.assign support (IE 9-11)
-require("./js/polyfill.js");
+// require("./js/polyfill.js");
 
 var App = React.createClass({
     displayName: "App",
