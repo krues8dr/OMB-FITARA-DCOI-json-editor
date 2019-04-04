@@ -1,7 +1,8 @@
 var React = require("react");
-
 var ReactDOM = require("react-dom");
 var JSONSchemaForm = require("react-jsonschema-form");
+require("@babel/polyfill");
+
 var DCOIschema = require("./js/schema");
 var formUiSchema = require("./js/uiSchema");
 var dummyData = require("./js/dummy");
